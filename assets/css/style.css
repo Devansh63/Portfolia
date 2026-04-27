@@ -35,6 +35,9 @@ body {
   font-size: 15px; /* bumped from browser default 16px-mapped 13px small sizes */
   line-height: 1.6;
   overflow-x: hidden;
+  /* smoother text rendering on iOS Safari and macOS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* ---- Typography ---- */
@@ -80,10 +83,17 @@ body {
   background: none;
   border: none;
   transition: background var(--transition), color var(--transition);
+  /* faster tap response on iOS — no 300ms delay */
+  touch-action: manipulation;
 }
-.nav-item:hover, .nav-item.active {
+.nav-item:hover {
   background: rgba(255,255,255,0.1);
   color: var(--text-primary);
+}
+/* orange dot for the section you're currently reading */
+.nav-item.active {
+  background: var(--accent-orange);
+  color: #fff;
 }
 .nav-item svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; }
 
@@ -294,6 +304,26 @@ body {
 .exp-item__company { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-bottom: 2px; }
 .exp-item__role    { font-size: 0.92rem; color: var(--text-muted); margin-bottom: 8px; }
 .exp-item__desc    { font-size: 0.93rem; color: #bbb; line-height: 1.7; }
+/* bullet list variant — used when desc is a <ul> */
+ul.exp-item__desc {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+ul.exp-item__desc li {
+  padding-left: 1.1em;
+  position: relative;
+}
+ul.exp-item__desc li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--accent-orange);
+  font-weight: 600;
+}
 .exp-item__date    { font-size: 0.82rem; color: var(--text-muted); white-space: nowrap; }
 .exp-item__arrow   { color: var(--accent-orange); }
 
@@ -376,6 +406,7 @@ body {
   border: none; border-radius: 40px;
   font-size: 0.88rem; font-weight: 600; cursor: pointer;
   transition: transform 0.2s, opacity 0.2s; font-family: inherit;
+  touch-action: manipulation;
 }
 .form-submit:hover { transform: scale(1.02); }
 
@@ -501,9 +532,12 @@ body {
   .chatbot-panel { height: 280px; }
   /* suggestion chips scroll horizontally instead of wrapping */
   .chatbot-panel__suggestions { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .suggestion-chip { touch-action: manipulation; }
   /* 16px minimum prevents iOS from zooming in on input focus */
   .chatbot-panel__input input { font-size: 16px; }
-  .exp-item__desc { font-size: 0.85rem; }
+  .exp-item__desc, ul.exp-item__desc { font-size: 0.85rem; }
+  /* contact form: stack name + email fields vertically */
+  .form-row { grid-template-columns: 1fr; gap: 12px; }
   /* nav pill tightens up so 7 icons fit on 375px screens */
   #main-nav { padding: 6px 10px; gap: 2px; }
   .nav-item { width: 32px; height: 32px; }

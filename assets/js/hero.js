@@ -36,6 +36,10 @@
   const BG_FADE_END   = 800; // px scrollY when hero bg fully gone
   const HERO_HIDE     = 860; // px scrollY after which hero stage is hidden
 
+  // On mobile the layout stacks, so the FLIP morph targets are in completely
+  // different positions — skip it and just do a simple fade instead
+  const isMobile = () => window.innerWidth <= 900;
+
   // ── Helpers ─────────────────────────────────────────────────────────────
   function lerp(a, b, t) { return a + (b - a) * t; }
   function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
@@ -74,6 +78,22 @@
   // ── Main animation tick ─────────────────────────────────────────────────
   function tick() {
     const scrollY = window.scrollY;
+
+    // ── Mobile: simple fade, no FLIP morph ──
+    if (isMobile()) {
+      const MOBILE_FADE_END = 220; // hero fully gone after 220px scroll
+      if (scrollY >= MOBILE_FADE_END) {
+        heroStage.style.visibility = 'hidden';
+        heroStage.style.pointerEvents = 'none';
+        heroStage.style.opacity = '';
+      } else {
+        heroStage.style.visibility = '';
+        heroStage.style.opacity = String(1 - scrollY / MOBILE_FADE_END);
+        heroStage.style.pointerEvents = scrollY > 80 ? 'none' : 'auto';
+      }
+      if (scrollHint) scrollHint.style.opacity = String(Math.max(0, 1 - scrollY / 80));
+      return;
+    }
 
     // ── Hero stage visibility ──
     if (scrollY >= HERO_HIDE) {
@@ -152,11 +172,20 @@
     // Prevent browser from restoring scroll position (hero must start from 0)
     if (history.scrollRestoration) history.scrollRestoration = 'manual';
     if (window.scrollY !== 0) window.scrollTo(0, 0);
-    // Card starts invisible (shell + inner elements) — hero covers everything
-    mainCard.style.opacity  = '0';
-    cardName.style.opacity  = '0';
-    cardPhoto.style.opacity = '0';
-    cardBio.style.opacity   = '0';
+
+    if (isMobile()) {
+      // Mobile: card is always visible — no FLIP, hero just fades on scroll
+      mainCard.style.opacity  = '1';
+      cardName.style.opacity  = '1';
+      cardPhoto.style.opacity = '1';
+      cardBio.style.opacity   = '1';
+    } else {
+      // Desktop: card starts invisible — hero covers everything until FLIP completes
+      mainCard.style.opacity  = '0';
+      cardName.style.opacity  = '0';
+      cardPhoto.style.opacity = '0';
+      cardBio.style.opacity   = '0';
+    }
     measure();
     tick();
     window.addEventListener('scroll', onScroll, { passive: true });

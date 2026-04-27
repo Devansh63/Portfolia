@@ -28,6 +28,17 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
+
+/* Keyboard-only focus ring — visible for tab users, invisible for mouse clicks */
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid var(--accent-orange);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+button:focus-visible, a:focus-visible {
+  outline-offset: 4px;
+}
 body {
   background: var(--bg);
   color: var(--text-primary);
@@ -327,6 +338,133 @@ ul.exp-item__desc li::before {
 .exp-item__date    { font-size: 0.82rem; color: var(--text-muted); white-space: nowrap; }
 .exp-item__arrow   { color: var(--accent-orange); }
 
+/* ---- Recommendations / testimonials ---- */
+.rec-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.rec-card {
+  position: relative;
+  padding: 28px 24px 24px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.rec-card__quote {
+  width: 28px;
+  height: 28px;
+  fill: var(--accent-orange);
+  opacity: 0.6;
+}
+.rec-card__text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+  font-style: italic;
+  margin: 0;
+  /* override blockquote default indent */
+  padding-left: 0;
+}
+.rec-card__author {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.rec-card__name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.rec-card__title {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ---- GitHub contributions chart ---- */
+.github-chart {
+  display: block;
+  margin-top: 28px;
+  padding: 18px 20px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color var(--transition), background var(--transition);
+}
+.github-chart:hover {
+  border-color: rgba(232,93,52,0.35);
+  background: rgba(255,255,255,0.04);
+}
+.github-chart__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+.github-chart__header svg { color: var(--text-primary); flex-shrink: 0; }
+.github-chart__arrow {
+  margin-left: auto;
+  color: var(--accent-orange);
+  font-size: 1rem;
+}
+.github-chart__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  /* SVG comes white-on-orange — adjust for our dark theme */
+  filter: brightness(0.95);
+}
+
+/* ---- Currently Learning grid ---- */
+.learning-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 36px;
+}
+.learning-card {
+  padding: 20px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: border-color var(--transition), background var(--transition);
+}
+.learning-card:hover {
+  border-color: rgba(232,93,52,0.35);
+  background: rgba(255,255,255,0.04);
+}
+.learning-card__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-orange);
+  margin-bottom: 10px;
+}
+.learning-card__title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.learning-card__desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
 /* ---- Quick-link cards (stats area) ---- */
 .skill-card {
   border-radius: 14px;
@@ -529,6 +667,10 @@ ul.exp-item__desc li::before {
   .section-title { font-size: 1.75rem; }
   /* skill cards stack to single column — needs !important to beat inline style */
   .skill-cards-grid { grid-template-columns: 1fr !important; }
+  /* learning cards: stack on mobile */
+  .learning-grid { grid-template-columns: 1fr; }
+  /* rec cards: stack on mobile */
+  .rec-grid { grid-template-columns: 1fr; }
   .chatbot-panel { height: 280px; }
   /* suggestion chips scroll horizontally instead of wrapping */
   .chatbot-panel__suggestions { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }

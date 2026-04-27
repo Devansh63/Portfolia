@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      width: 1200px;
+      height: 630px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    body {
+      background: #0d0706;
+      color: white;
+      font-family: 'Inter', system-ui, sans-serif;
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: 0;
+    }
+
+    .glow {
+      position: absolute;
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,93,52,0.20) 0%, transparent 70%);
+      top: -200px; right: -200px;
+      z-index: 0;
+    }
+
+    .glow-2 {
+      position: absolute;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,240,47,0.10) 0%, transparent 70%);
+      bottom: -200px; left: -150px;
+      z-index: 0;
+    }
+
+    /* Top row: brand + badge */
+    .brand {
+      position: absolute;
+      top: 56px;
+      left: 72px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      z-index: 10;
+    }
+    .logo {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: #e85d34;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 26px;
+    }
+    .brand-text {
+      font-size: 18px; font-weight: 600;
+      color: rgba(255,255,255,0.7); letter-spacing: 0.02em;
+    }
+
+    .badge {
+      position: absolute;
+      top: 64px;
+      right: 72px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 18px;
+      background: rgba(232,93,52,0.18);
+      border: 1px solid rgba(232,93,52,0.5);
+      border-radius: 100px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #ff8a66;
+      z-index: 10;
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #e85d34; }
+
+    /* Headline + tagline (centered vertically) */
+    .name {
+      position: absolute;
+      top: 200px;
+      left: 72px;
+      font-size: 96px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      z-index: 10;
+    }
+
+    .tagline {
+      position: absolute;
+      top: 420px;
+      left: 72px;
+      right: 72px;
+      font-size: 28px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.4;
+      z-index: 10;
+    }
+
+    .accent { color: #ff8a66; font-weight: 800; }
+    .accent-lime { color: #c8f02f; font-weight: 800; }
+  </style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="glow"></div>
+  <div class="glow-2"></div>
+
+  <div class="brand">
+    <div class="logo">D</div>
+    <div class="brand-text">devansh agrawal</div>
+  </div>
+
+  <div class="badge">
+    <span class="dot"></span>
+    Open to ML/AI Internships
+  </div>
+
+  <div class="name">ML/AI<br>Engineer.</div>
+
+  <div class="tagline">
+    SWE turned ML researcher. Built federal software used by <span class="accent">300+ agencies</span>.<br>
+    Now at <span class="accent-lime">UIUC</span> — Master of Computer Science, 4.0 GPA.
+  </div>
+</body>
+</html>

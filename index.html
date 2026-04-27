@@ -10,14 +10,54 @@
   <meta property="og:type"        content="website" />
   <meta property="og:title"       content="Devansh Agrawal — ML/AI Engineer" />
   <meta property="og:description" content="SWE turned ML researcher. Built federal software used by 300+ agencies. Now at UIUC (4.0 GPA) specializing in ML systems. Open to ML/AI internships." />
-  <meta property="og:image"       content="assets/images/profile.png" />
-  <meta property="og:url"         content="https://devanshagrawal.com" />
+  <meta property="og:image"       content="https://devanshagrawal.netlify.app/assets/images/og-card.png" />
+  <meta property="og:url"         content="https://devanshagrawal.netlify.app" />
 
   <!-- Twitter/X card -->
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:title"       content="Devansh Agrawal — ML/AI Engineer" />
   <meta name="twitter:description" content="SWE turned ML researcher. 3+ yrs at OPEXUS, now UIUC MCS (4.0 GPA). Open to ML/AI internships." />
-  <meta name="twitter:image"       content="assets/images/profile.png" />
+  <meta name="twitter:image"       content="https://devanshagrawal.netlify.app/assets/images/og-card.png" />
+
+  <!-- JSON-LD Person schema — helps Google understand who you are for rich search results -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Devansh Agrawal",
+    "url": "https://devanshagrawal.netlify.app",
+    "image": "https://devanshagrawal.netlify.app/assets/images/profile.png",
+    "jobTitle": "ML/AI Engineer",
+    "description": "SWE turned ML researcher. Built federal software used by 300+ agencies at OPEXUS. Master of Computer Science at UIUC, specializing in ML systems.",
+    "alumniOf": [
+      {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Illinois Urbana-Champaign",
+        "sameAs": "https://illinois.edu"
+      },
+      {
+        "@type": "CollegeOrUniversity",
+        "name": "Purdue University Fort Wayne",
+        "sameAs": "https://www.pfw.edu"
+      }
+    ],
+    "knowsAbout": [
+      "Machine Learning",
+      "Deep Learning",
+      "Natural Language Processing",
+      "Distributed Systems",
+      "Full-Stack Engineering",
+      "Python",
+      "PyTorch",
+      "Hugging Face Transformers"
+    ],
+    "sameAs": [
+      "https://github.com/Devansh63",
+      "https://www.linkedin.com/in/devansh-agrawal63/"
+    ],
+    "email": "mailto:devanshagrawal63@gmail.com"
+  }
+  </script>
 
   <!-- Favicon — inline SVG so no extra file needed -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23e85d34'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='900' font-size='18' fill='white'>D</text></svg>" />
@@ -25,6 +65,22 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- ──────────────────────────────────────────────────────────────────────
+       Google Analytics 4
+       Replace G-XXXXXXXXXX with your actual GA4 Measurement ID from
+       https://analytics.google.com (Admin > Data Streams > your stream).
+       Until you replace it, the script is a no-op (won't track anything).
+  ────────────────────────────────────────────────────────────────────── -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX', {
+      anonymize_ip: true  // privacy-respecting
+    });
+  </script>
   <style>
     /* ── Hero overlay: fixed, fades out as user scrolls ── */
     #hero-stage {
@@ -498,7 +554,7 @@
 
             <div class="exp-item reveal reveal-d1">
               <div style="display:flex;gap:14px;align-items:flex-start;">
-                <img src="https://logo.clearbit.com/illinois.edu" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" onerror="this.style.display='none'">
+                <img src="https://logo.clearbit.com/illinois.edu" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">
                 <div>
                   <div class="exp-item__company">University of Illinois Urbana-Champaign</div>
                   <div class="exp-item__role">Master of Computer Science — ML Systems Specialization · GPA 4.0</div>
@@ -510,7 +566,7 @@
 
             <div class="exp-item reveal reveal-d2">
               <div style="display:flex;gap:14px;align-items:flex-start;">
-                <img src="https://logo.clearbit.com/purdue.edu" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" onerror="this.style.display='none'">
+                <img src="https://logo.clearbit.com/purdue.edu" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">
                 <div>
                   <div class="exp-item__company">Purdue University Fort Wayne</div>
                   <div class="exp-item__role">BS Computer Science, Minor Mathematics · GPA 3.80</div>
@@ -536,6 +592,42 @@
         </section>
 
         <!-- ══════════════════════════════════
+             CURRENTLY LEARNING
+             What I'm actively studying / building right now.
+             Update these as you progress through coursework or new projects.
+        ══════════════════════════════════ -->
+        <section class="content-section" id="learning">
+          <h2 class="section-title reveal">CURRENTLY<br><span>LEARNING</span></h2>
+          <div class="learning-grid reveal reveal-d1">
+
+            <div class="learning-card">
+              <div class="learning-card__label">Coursework · UIUC Spring 2026</div>
+              <div class="learning-card__title">Applied Machine Learning</div>
+              <div class="learning-card__desc">Deep dives into supervised/unsupervised learning, model evaluation, and hands-on PyTorch implementations.</div>
+            </div>
+
+            <div class="learning-card">
+              <div class="learning-card__label">Coursework · UIUC Spring 2026</div>
+              <div class="learning-card__title">Distributed Systems</div>
+              <div class="learning-card__desc">Consensus protocols, consistency models, and building fault-tolerant systems at scale.</div>
+            </div>
+
+            <div class="learning-card">
+              <div class="learning-card__label">Side Project</div>
+              <div class="learning-card__title">Agentic RAG with Tool Use</div>
+              <div class="learning-card__desc">Building multi-step agents that combine retrieval, function calls, and reasoning loops over personal datasets.</div>
+            </div>
+
+            <div class="learning-card">
+              <div class="learning-card__label">Reading</div>
+              <div class="learning-card__title">"Designing Data-Intensive Applications" — Kleppmann</div>
+              <div class="learning-card__desc">Working through chapter-by-chapter notes on storage engines, replication, and stream processing.</div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════
              WORK EXPERIENCE
         ══════════════════════════════════ -->
         <section class="content-section" id="experience">
@@ -544,7 +636,7 @@
 
             <div class="exp-item reveal reveal-d1">
               <div style="display:flex;gap:14px;align-items:flex-start;">
-                <img src="https://logo.clearbit.com/opexus.com" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" onerror="this.style.display='none'">
+                <img src="https://logo.clearbit.com/opexus.com" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">
                 <div>
                   <div class="exp-item__company">OPEXUS (Formerly AINS LLC)</div>
                   <div class="exp-item__role">Full-Stack Software Engineer — Washington, D.C.</div>
@@ -567,7 +659,7 @@
 
             <div class="exp-item reveal reveal-d2">
               <div style="display:flex;gap:14px;align-items:flex-start;">
-                <img src="https://logo.clearbit.com/purdue.edu" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" onerror="this.style.display='none'">
+                <img src="https://logo.clearbit.com/purdue.edu" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">
                 <div>
                   <div class="exp-item__company">Purdue University Fort Wayne</div>
                   <div class="exp-item__role">Applications Developer</div>
@@ -583,7 +675,7 @@
 
             <div class="exp-item reveal reveal-d3">
               <div style="display:flex;gap:14px;align-items:flex-start;">
-                <img src="https://logo.clearbit.com/purdue.edu" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" onerror="this.style.display='none'">
+                <img src="https://logo.clearbit.com/purdue.edu" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">
                 <div>
                   <div class="exp-item__company">Purdue University Fort Wayne</div>
                   <div class="exp-item__role">Senior IT Support Analyst</div>
@@ -598,7 +690,7 @@
 
             <div class="exp-item reveal reveal-d4">
               <div style="display:flex;gap:14px;align-items:flex-start;">
-                <img src="https://logo.clearbit.com/khalti.com" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" onerror="this.style.display='none'">
+                <img src="https://logo.clearbit.com/khalti.com" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">
                 <div>
                   <div class="exp-item__company">Janaki Technology — Khalti</div>
                   <div class="exp-item__role">Software Developer Intern — Kathmandu, Nepal</div>
@@ -627,6 +719,48 @@
             </div>
 
           </div>
+        </section>
+
+        <!-- ══════════════════════════════════
+             RECOMMENDATIONS
+             Replace placeholder text with real LinkedIn recommendations.
+             Each block: quote, attribution name, attribution title.
+        ══════════════════════════════════ -->
+        <section class="content-section" id="recommendations">
+          <h2 class="section-title reveal">RECOMMEN-<br><span>DATIONS</span></h2>
+          <div class="rec-grid" style="margin-top:36px;">
+
+            <figure class="rec-card reveal reveal-d1">
+              <svg class="rec-card__quote" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9.583 17.321C8.553 16.227 8 15 8 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C18.553 16.227 18 15 18 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"/>
+              </svg>
+              <blockquote class="rec-card__text">
+                Devansh is one of the most thoughtful engineers I've worked with. He drove the FOIAXpress redaction pipeline from prototype to production, and his ability to translate ML research into reliable software is rare.
+              </blockquote>
+              <figcaption class="rec-card__author">
+                <div class="rec-card__name">Add Name Here</div>
+                <div class="rec-card__title">Engineering Manager · OPEXUS</div>
+              </figcaption>
+            </figure>
+
+            <figure class="rec-card reveal reveal-d2">
+              <svg class="rec-card__quote" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9.583 17.321C8.553 16.227 8 15 8 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C18.553 16.227 18 15 18 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"/>
+              </svg>
+              <blockquote class="rec-card__text">
+                Working with Devansh on the bilingual rollout was a masterclass in cross-functional leadership. He scoped the work, mentored the team, and shipped the feature on time — landing 45 new customers in the process.
+              </blockquote>
+              <figcaption class="rec-card__author">
+                <div class="rec-card__name">Add Name Here</div>
+                <div class="rec-card__title">Product Lead · OPEXUS</div>
+              </figcaption>
+            </figure>
+
+          </div>
+
+          <p style="margin-top:24px;font-size:0.8rem;color:var(--text-muted);text-align:center;">
+            More on <a href="https://www.linkedin.com/in/devansh-agrawal63/" target="_blank" rel="noopener" style="color:var(--accent-orange);text-decoration:none;">LinkedIn ↗</a>
+          </p>
         </section>
 
         <!-- ══════════════════════════════════
@@ -671,6 +805,22 @@
         ══════════════════════════════════ -->
         <section class="content-section" id="skills">
           <h2 class="section-title reveal">TECHNICAL<br><span>SKILLS</span></h2>
+
+          <!-- GitHub contributions chart — pulls live data from ghchart.rshah.org -->
+          <a class="github-chart reveal reveal-d1" href="https://github.com/Devansh63" target="_blank" rel="noopener" title="View GitHub profile">
+            <div class="github-chart__header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.305-5.467-1.332-5.467-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+              </svg>
+              <span>Recent GitHub activity</span>
+              <span class="github-chart__arrow">↗</span>
+            </div>
+            <img src="https://ghchart.rshah.org/e85d34/Devansh63"
+                 alt="Devansh Agrawal's GitHub contributions over the past year"
+                 loading="lazy" decoding="async"
+                 class="github-chart__img" />
+          </a>
+
           <div style="margin-top:36px;">
 
             <div class="skill-group reveal reveal-d1">

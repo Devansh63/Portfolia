@@ -1,0 +1,528 @@
+/* =============================================
+   DEVANSH AGRAWAL PORTFOLIO — Global Styles
+   ============================================= */
+
+:root {
+  --bg:            #0d0706;
+  --bg-deep:       #130908;
+  --card-bg:       #ffffff;
+  /* ── Card background options (swap --card-bg to try):
+     Warm cream  : #fef9f0
+     Cool slate  : #f0f2f5
+     Dark warm   : #1c1008
+     Dark charcoal: #161616
+  ── */
+  --text-primary:  #ffffff;
+  --text-muted:    #888888;
+  --text-dark:     #1a1a1a;
+  --accent-orange: #e85d34;
+  --accent-lime:   #c8f02f;
+  --accent-blue:   #4a7fa5;
+  --border:        rgba(255,255,255,0.08);
+  --card-shadow:   0 8px 40px rgba(0,0,0,0.5);
+  --radius:        20px;
+  --nav-h:         56px;
+  --sidebar-w:     286px;
+  --transition:    0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 15px; /* bumped from browser default 16px-mapped 13px small sizes */
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ---- Typography ---- */
+.section-title {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.section-title span {
+  display: block;
+  color: rgba(255,255,255,0.15);
+  font-size: 0.9em;
+}
+
+/* ---- Nav ---- */
+#main-nav {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background: rgba(13, 7, 6, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: 40px;
+  padding: 8px 20px;
+  display: flex;
+  gap: 4px;
+}
+.nav-item {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: background var(--transition), color var(--transition);
+}
+.nav-item:hover, .nav-item.active {
+  background: rgba(255,255,255,0.1);
+  color: var(--text-primary);
+}
+.nav-item svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+
+/* =============================================
+   PROFILE CARD — name top · photo full-width · bio · socials
+   ============================================= */
+.profile-card {
+  width: var(--sidebar-w);
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.profile-card__name {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #111;
+  text-align: center;
+  padding: 20px 16px 14px;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.profile-card__photo-wrap {
+  width: 100%;
+  height: 260px;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: transparent;
+}
+.profile-card__photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* anchor to bottom so the person is visible and empty sky above is clipped */
+  object-position: center bottom;
+}
+
+/* Card sub-elements start hidden; JS reveals them as flying elements morph in */
+#main-card .profile-card__name,
+#main-card .profile-card__photo-wrap,
+#main-card .profile-card__bio {
+  opacity: 0;
+}
+
+.profile-card__bio {
+  font-size: 0.85rem;
+  color: #555;
+  text-align: center;
+  line-height: 1.65;
+  padding: 14px 18px;
+  flex: 1;
+}
+
+/* "Open to Work" pulse badge — sits between bio and divider */
+.profile-card__status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #2e7d32;
+  padding: 4px 16px 12px;
+  letter-spacing: 0.01em;
+}
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  flex-shrink: 0;
+  animation: status-ping 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes status-ping {
+  0%   { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
+  70%  { box-shadow: 0 0 0 7px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+.profile-card__divider {
+  height: 1px;
+  background: rgba(0,0,0,0.07);
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.profile-card__socials {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  padding: 14px 16px 20px;
+}
+.profile-card__socials a {
+  color: #aaa;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+}
+.profile-card__socials a:hover { color: var(--accent-orange); }
+.profile-card__socials svg { width: 18px; height: 18px; }
+
+/* ---- Inner page layout (post-hero) ---- */
+.page-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 36px;
+  padding: 80px 40px 80px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+.page-layout .profile-card {
+  position: sticky;
+  top: 88px;
+  flex-shrink: 0;
+  /* opacity managed by hero.js; starts at 0 then fades in during morph */
+}
+/* padding-top matches HERO_HIDE (860px) minus page-layout padding-top (80px),
+   so the first content section appears right when the hero overlay finishes */
+.page-content { flex: 1; min-width: 0; padding-top: 780px; overflow-x: hidden; }
+
+/* Skill cards grid — both columns constrained to content width */
+.skill-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+/* ---- Section spacing ---- */
+.content-section { padding-top: 80px; }
+.content-section:first-child { padding-top: 0; }
+
+/* Subtle top rule on each section to break up the long scroll visually */
+.content-section + .content-section {
+  border-top: 1px solid rgba(255,255,255,0.05);
+  margin-top: 0;
+}
+
+/* ---- Scroll-reveal ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-d1 { transition-delay: 0.10s; }
+.reveal-d2 { transition-delay: 0.20s; }
+.reveal-d3 { transition-delay: 0.30s; }
+.reveal-d4 { transition-delay: 0.40s; }
+.reveal-d5 { transition-delay: 0.50s; }
+.reveal-d6 { transition-delay: 0.60s; }
+
+/* ---- Section label ---- */
+.section-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.section-label--orange { color: var(--accent-orange); }
+.section-label--lime   { color: var(--accent-lime); }
+
+/* ---- List items (projects) ---- */
+.list-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 12px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+  transition: opacity var(--transition);
+}
+.list-item:hover { opacity: 0.75; }
+.list-item:first-child { border-top: 1px solid var(--border); }
+.list-item__thumb {
+  width: 72px; height: 52px;
+  border-radius: 8px;
+  background: #1e1e1e;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.list-item__thumb img { width: 100%; height: 100%; object-fit: cover; }
+.list-item__title { font-size: 1.05rem; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+.list-item__sub   { font-size: 0.91rem; color: var(--text-muted); }
+.list-item__meta  { font-size: 0.9rem; color: var(--text-muted); margin-top: 6px; line-height: 1.6; }
+.list-item__arrow { color: var(--accent-orange); font-size: 1.1rem; margin-top: 2px; }
+
+/* ---- Experience items ---- */
+.exp-item {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 12px;
+}
+.exp-item:first-child { border-top: 1px solid var(--border); }
+.exp-item__company { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-bottom: 2px; }
+.exp-item__role    { font-size: 0.92rem; color: var(--text-muted); margin-bottom: 8px; }
+.exp-item__desc    { font-size: 0.93rem; color: #bbb; line-height: 1.7; }
+.exp-item__date    { font-size: 0.82rem; color: var(--text-muted); white-space: nowrap; }
+.exp-item__arrow   { color: var(--accent-orange); }
+
+/* ---- Quick-link cards (stats area) ---- */
+.skill-card {
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition);
+  cursor: pointer;
+  text-decoration: none;
+}
+.skill-card:hover { transform: translateY(-2px); }
+.skill-card--orange { background: var(--accent-orange); color: #fff; }
+.skill-card--lime   { background: var(--accent-lime); color: #111; }
+.skill-card__icon svg { width: 24px; height: 24px; }
+.skill-card__title {
+  font-size: 0.9rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.3;
+}
+.skill-card__arrow {
+  margin-top: auto; align-self: flex-end;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(0,0,0,0.15);
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ---- Skill tags ---- */
+.skill-group { margin-bottom: 28px; }
+.skill-group__label {
+  font-size: 0.78rem; color: var(--accent-orange);
+  text-transform: uppercase; letter-spacing: 0.12em;
+  font-weight: 600; margin-bottom: 10px;
+}
+.skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.skill-tag {
+  font-size: 0.85rem; padding: 6px 14px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  color: #ccc; transition: all 0.2s;
+}
+.skill-tag:hover {
+  background: rgba(232,93,52,0.1);
+  border-color: var(--accent-orange);
+  color: var(--text-primary);
+}
+
+/* ---- Contact form ---- */
+.contact-form {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px; margin-top: 8px;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.form-field { display: flex; flex-direction: column; gap: 6px; }
+.form-field label { font-size: 0.75rem; color: var(--text-muted); }
+.form-field input,
+.form-field textarea,
+.form-field select {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 14px;
+  font-size: 0.82rem; color: var(--text-primary);
+  outline: none; font-family: inherit; transition: border-color 0.2s;
+}
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus { border-color: rgba(232,93,52,0.5); }
+.form-field select option { background: #1a1a1a; }
+.form-field textarea { resize: vertical; min-height: 100px; }
+.form-submit {
+  margin-top: 16px; padding: 12px 32px;
+  background: var(--accent-orange); color: #fff;
+  border: none; border-radius: 40px;
+  font-size: 0.88rem; font-weight: 600; cursor: pointer;
+  transition: transform 0.2s, opacity 0.2s; font-family: inherit;
+}
+.form-submit:hover { transform: scale(1.02); }
+
+/* ---- Chatbot panel ---- */
+.chatbot-panel {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex; flex-direction: column;
+  height: 420px; overflow: hidden;
+}
+.chatbot-panel__header { padding: 20px 24px 16px; border-bottom: 1px solid var(--border); }
+.chatbot-panel__header h2 { font-size: 1.1rem; font-weight: 700; color: var(--text-primary); }
+.chatbot-panel__header p  { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+.chatbot-panel__messages {
+  flex: 1; overflow-y: auto; padding: 16px 20px;
+  display: flex; flex-direction: column; gap: 12px; scroll-behavior: smooth;
+}
+.chatbot-panel__messages::-webkit-scrollbar { width: 4px; }
+.chatbot-panel__messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+.chat-msg {
+  max-width: 85%; padding: 10px 14px;
+  border-radius: 12px; font-size: 0.82rem; line-height: 1.55;
+  animation: msgIn 0.25s ease;
+}
+@keyframes msgIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.chat-msg--user { background: var(--accent-orange); color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
+.chat-msg--bot  { background: rgba(255,255,255,0.07); color: #ddd; align-self: flex-start; border-bottom-left-radius: 4px; }
+.chat-msg--typing { background: rgba(255,255,255,0.07); align-self: flex-start; color: var(--text-muted); }
+.chat-typing-dots { display: inline-flex; gap: 3px; align-items: center; }
+.chat-typing-dots span {
+  width: 5px; height: 5px; background: var(--text-muted);
+  border-radius: 50%; animation: dot-bounce 1.2s infinite;
+}
+.chat-typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.chat-typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes dot-bounce {
+  0%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-5px); }
+}
+.chatbot-panel__suggestions { padding: 0 20px 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+.suggestion-chip {
+  font-size: 0.82rem; padding: 5px 12px;
+  border-radius: 20px; border: 1px solid var(--border);
+  background: transparent; color: var(--text-muted);
+  cursor: pointer; transition: all var(--transition); white-space: nowrap;
+}
+.suggestion-chip:hover {
+  border-color: var(--accent-orange); color: var(--accent-orange);
+  background: rgba(232,93,52,0.06);
+}
+.chatbot-panel__input {
+  padding: 12px 16px; border-top: 1px solid var(--border);
+  display: flex; gap: 10px; align-items: center;
+}
+.chatbot-panel__input input {
+  flex: 1; background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border); border-radius: 24px;
+  padding: 10px 16px; font-size: 0.82rem; color: var(--text-primary);
+  outline: none; transition: border-color var(--transition); font-family: inherit;
+}
+.chatbot-panel__input input::placeholder { color: var(--text-muted); }
+.chatbot-panel__input input:focus { border-color: rgba(232,93,52,0.5); }
+.chatbot-panel__input button {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--accent-orange); border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform var(--transition), opacity var(--transition); flex-shrink: 0;
+}
+.chatbot-panel__input button:hover { transform: scale(1.05); }
+.chatbot-panel__input button:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.chatbot-panel__input button svg { width: 16px; height: 16px; stroke: #fff; }
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .page-layout { flex-direction: column; padding: 90px 24px 60px; gap: 24px; }
+  /* no hero scroll offset on mobile — content starts right after the card */
+  .page-content { padding-top: 0; }
+  .page-layout .profile-card {
+    position: static; width: 100%; flex-direction: row;
+    overflow: visible; align-items: center; padding: 16px; gap: 16px;
+  }
+  .profile-card__photo-wrap { width: 80px; height: 80px; border-radius: 50%; flex-shrink: 0; }
+  .profile-card__name { font-size: 1.1rem; padding: 0; text-align: left; }
+  .profile-card__bio  { text-align: left; padding: 0; font-size: 0.7rem; }
+  .profile-card__divider { display: none; }
+  .profile-card__socials { padding: 0; justify-content: flex-start; }
+  .section-title { font-size: 2rem; }
+  .chatbot-panel { height: 360px; }
+}
+
+/* ---- Tablet portrait ---- */
+@media (max-width: 680px) {
+  .page-layout { padding: 80px 16px 40px; gap: 20px; }
+  /* bio is redundant at this size — visible in the hero */
+  .profile-card__bio { display: none; }
+  .chatbot-panel { height: 320px; }
+  .list-item { padding: 18px 0; }
+  .exp-item { padding: 18px 0; }
+  /* hero photo shrinks proportionally */
+  #fly-photo { width: 50vw; max-width: 50vw; margin-top: -50px; }
+  #fly-content-row { gap: 24px; padding: 0 20px; }
+  #fly-bio { font-size: 0.9rem; max-width: 260px; }
+}
+
+/* ---- Mobile phones ---- */
+@media (max-width: 420px) {
+  .page-layout { padding: 68px 12px 40px; gap: 12px; }
+  .profile-card__name { font-size: 0.85rem; }
+  .profile-card__socials { gap: 10px; }
+  .profile-card__socials svg { width: 16px; height: 16px; }
+  .section-title { font-size: 1.75rem; }
+  /* skill cards stack to single column — needs !important to beat inline style */
+  .skill-cards-grid { grid-template-columns: 1fr !important; }
+  .chatbot-panel { height: 280px; }
+  /* suggestion chips scroll horizontally instead of wrapping */
+  .chatbot-panel__suggestions { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  /* 16px minimum prevents iOS from zooming in on input focus */
+  .chatbot-panel__input input { font-size: 16px; }
+  .exp-item__desc { font-size: 0.85rem; }
+  /* nav pill tightens up so 7 icons fit on 375px screens */
+  #main-nav { padding: 6px 10px; gap: 2px; }
+  .nav-item { width: 32px; height: 32px; }
+  .nav-item svg { width: 16px; height: 16px; }
+  /* hero: stack photo + bio vertically */
+  #fly-content-row { flex-direction: column; align-items: flex-start; gap: 10px; padding: 0 20px; margin-top: -10px; }
+  #fly-photo {
+    width: 180px; max-width: 50vw; margin-top: 0;
+    /* Cap height so transparent overhead in the PNG doesn't push bio off-screen */
+    max-height: 190px; overflow: hidden;
+    display: flex; align-items: flex-end;
+  }
+  #fly-photo img { width: 100%; height: auto; }
+  /* Show a compact bio below the photo — gives recruiters context before they scroll */
+  #fly-bio {
+    display: block;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.65);
+    max-width: 90vw;
+  }
+}

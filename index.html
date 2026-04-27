@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Devansh Agrawal — ML/AI Engineer &amp; MCS at UIUC</title>
+  <meta name="description" content="Devansh Agrawal — SWE turned ML researcher. 3+ years at OPEXUS building federal software used by 300+ agencies. Now at UIUC (4.0 GPA) specializing in ML systems. Open to ML/AI internships." />
+
+  <!-- Open Graph — controls how the link looks when shared on LinkedIn, Slack, iMessage -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Devansh Agrawal — ML/AI Engineer" />
+  <meta property="og:description" content="SWE turned ML researcher. Built federal software used by 300+ agencies. Now at UIUC (4.0 GPA) specializing in ML systems. Open to ML/AI internships." />
+  <meta property="og:image"       content="assets/images/profile.png" />
+  <meta property="og:url"         content="https://devanshagrawal.com" />
+
+  <!-- Twitter/X card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Devansh Agrawal — ML/AI Engineer" />
+  <meta name="twitter:description" content="SWE turned ML researcher. 3+ yrs at OPEXUS, now UIUC MCS (4.0 GPA). Open to ML/AI internships." />
+  <meta name="twitter:image"       content="assets/images/profile.png" />
+
+  <!-- Favicon — inline SVG so no extra file needed -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23e85d34'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='900' font-size='18' fill='white'>D</text></svg>" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    /* ── Hero overlay: fixed, fades out as user scrolls ── */
+    #hero-stage {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 10;
+      overflow: hidden;
+    }
+
+    /* Dark grid background */
+    #hero-bg {
+      position: absolute;
+      inset: 0;
+      background-color: #130807;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 55px 55px;
+      z-index: 0;
+    }
+
+    /* Flying elements overlay */
+    #hero-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 72px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    #fly-headline-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.35em;
+      margin-bottom: 24px;
+      padding-left: 48px;
+      padding-right: 48px; /* prevent name clipping at narrow viewports */
+      width: 100%;
+      max-width: 1040px;
+    }
+    #fly-greeting {
+      font-size: clamp(2.1rem, 5.2vw, 3.4rem);
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.03em;
+      display: inline-block;
+      will-change: opacity, transform;
+    }
+    #fly-name {
+      font-size: clamp(2.1rem, 5.2vw, 3.4rem);
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.03em;
+      will-change: transform, opacity;
+    }
+
+    #fly-content-row {
+      display: flex;
+      align-items: center;
+      gap: 52px;
+      padding: 0 48px;
+      width: 100%;
+      max-width: 1040px;
+      justify-content: flex-start;
+    }
+    #fly-photo {
+      width: 630px;
+      max-width: 60vw;
+      flex-shrink: 0;
+      margin-left: 0;
+      margin-top: -110px;
+      will-change: transform, opacity;
+    }
+    #fly-photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 24px 70px rgba(232,93,52,0.3));
+    }
+    #fly-bio {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.62);
+      line-height: 1.75;
+      max-width: 380px;
+      will-change: transform, opacity;
+    }
+
+    /* Animated scroll cue at the bottom of the hero */
+    #scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.38);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      pointer-events: none;
+      will-change: opacity;
+    }
+    #scroll-hint svg {
+      animation: hint-bounce 1.6s ease-in-out infinite;
+    }
+    @keyframes hint-bounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(6px); }
+    }
+
+    /* Mobile hero: override the desktop align-items:center so photo+bio are left-aligned */
+    @media (max-width: 680px) {
+      #fly-content-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 0 20px;
+        margin-top: 8px;
+      }
+      #fly-photo {
+        width: 180px;
+        max-width: 52vw;
+        margin-top: 0;
+        /* Clamp height so the image's transparent overhead doesn't eat screen space */
+        max-height: 200px;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+      }
+      #fly-photo img { width: 100%; height: auto; }
+      #fly-bio {
+        font-size: 0.85rem;
+        line-height: 1.55;
+        max-width: 92vw;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════ -->
+  <nav id="main-nav" aria-label="Main navigation">
+    <button class="nav-item active" data-section="home" title="Home" aria-label="Home">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </button>
+    <button class="nav-item" data-section="chatbot" title="Ask Devansh" aria-label="Ask Devansh">
+      <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    </button>
+    <button class="nav-item" data-section="projects" title="Projects" aria-label="Projects">
+      <svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+    </button>
+    <button class="nav-item" data-section="education" title="Education" aria-label="Education">
+      <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+    </button>
+    <button class="nav-item" data-section="experience" title="Work Experience" aria-label="Work Experience">
+      <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+    </button>
+    <button class="nav-item" data-section="research" title="Research" aria-label="Research">
+      <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+    </button>
+    <button class="nav-item" data-section="skills" title="Skills" aria-label="Skills">
+      <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+    </button>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       HERO OVERLAY — fades as user scrolls
+       Flying elements morph into sidebar card
+  ══════════════════════════════════════ -->
+  <div id="hero-stage">
+    <div id="hero-bg"></div>
+    <div id="hero-overlay" aria-hidden="true">
+      <div id="fly-headline-row">
+        <span id="fly-greeting">Hi, I'm&nbsp;</span><span id="fly-name">Devansh Agrawal</span>
+      </div>
+      <div id="fly-content-row">
+        <div id="fly-photo">
+          <img src="assets/images/profile.png" alt="" />
+        </div>
+        <p id="fly-bio">
+          Full-stack engineer with 3+ years shipping enterprise software
+          to 300+ federal agencies. Now at UIUC (4.0 GPA) pursuing
+          a Master's in CS, specializing in ML systems.
+        </p>
+      </div>
+
+      <!-- Scroll nudge — fades as user scrolls, hidden once hero clears -->
+      <div id="scroll-hint" aria-hidden="true">
+        <span>scroll</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <line x1="12" y1="5" x2="12" y2="19"/>
+          <polyline points="19 12 12 19 5 12"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       MAIN CONTENT — always rendered, card is persistent sticky sidebar
+  ══════════════════════════════════════ -->
+  <main id="main-content">
+    <div class="page-layout">
+
+      <!-- Persistent sticky sidebar — morph target for flying elements -->
+      <aside class="profile-card" id="main-card">
+        <div class="profile-card__name" id="card-name">Devansh Agrawal</div>
+        <div class="profile-card__photo-wrap" id="card-photo-wrap">
+          <img src="assets/images/profile.png" alt="Devansh Agrawal" />
+        </div>
+        <p class="profile-card__bio" id="card-bio">
+          SWE turned ML researcher. Built federal software used by 300+ agencies; now at UIUC (4.0 GPA) specializing in ML systems.
+        </p>
+        <div class="profile-card__status">
+          <span class="status-dot"></span>
+          Open to ML/AI Internships
+        </div>
+        <div class="profile-card__divider"></div>
+        <div class="profile-card__socials">
+          <a href="https://github.com/Devansh63" target="_blank" rel="noopener" title="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/devansh-agrawal63/" target="_blank" rel="noopener" title="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="mailto:devanshagrawal63@gmail.com" title="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+          <a href="assets/resume.pdf" target="_blank" rel="noopener" title="Download Resume">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </a>
+        </div>
+      </aside>
+
+      <!-- Scrollable content -->
+      <div class="page-content">
+
+        <!-- ══════════════════════════════════
+             ASK DEVANSH — RAG Chatbot
+             (pairs with card as initial home view)
+        ══════════════════════════════════ -->
+        <section class="content-section" id="chatbot">
+          <div class="chatbot-panel">
+            <div class="chatbot-panel__header">
+              <h2>Ask Devansh</h2>
+              <p>AI assistant trained on my professional background</p>
+            </div>
+            <div class="chatbot-panel__messages" id="chat-messages">
+              <div class="chat-msg chat-msg--bot">
+                Hi! I'm an AI assistant trained on Devansh's background. Ask me anything about his experience, projects, skills, or what he's working on at UIUC.
+              </div>
+            </div>
+            <div class="chatbot-panel__suggestions" id="chat-suggestions">
+              <button class="suggestion-chip" data-q="Tell me about the NeuroDrone project">NeuroDrone</button>
+              <button class="suggestion-chip" data-q="What did you build at OPEXUS?">OPEXUS work</button>
+              <button class="suggestion-chip" data-q="What ML research have you done?">ML research</button>
+              <button class="suggestion-chip" data-q="What are your technical skills?">Skills</button>
+              <button class="suggestion-chip" data-q="What are you studying at UIUC?">UIUC studies</button>
+            </div>
+            <div class="chatbot-panel__input">
+              <input type="text" id="chat-input" placeholder="Ask me anything..." autocomplete="off" />
+              <button id="chat-send" aria-label="Send">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="22" y1="2" x2="11" y2="13"/>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── Currently seeking banner ── -->
+        <div style="display:flex;align-items:center;gap:10px;padding:12px 16px;background:rgba(232,93,52,0.08);border:1px solid rgba(232,93,52,0.2);border-radius:12px;margin-bottom:32px;" class="reveal">
+          <span style="width:8px;height:8px;border-radius:50%;background:#22c55e;flex-shrink:0;"></span>
+          <span style="font-size:0.82rem;color:var(--text-primary);font-weight:500;">Actively seeking <strong>ML/AI internships</strong> for Summer / Fall 2026 &nbsp;&middot;&nbsp; F-1 visa, CPT eligible &nbsp;&middot;&nbsp; <a href="mailto:devanshagrawal63@gmail.com" style="color:var(--accent-orange);text-decoration:none;">devanshagrawal63@gmail.com</a></span>
+        </div>
+
+        <!-- ── Stats + quick-link cards ── -->
+        <div class="content-section" id="home-stats">
+          <div class="section-title reveal" style="margin-bottom:32px;">
+            EXPLORE
+            <span>MY WORK</span>
+          </div>
+          <div style="display:flex; gap:32px; margin-bottom:40px; flex-wrap:wrap;">
+            <div class="reveal reveal-d1">
+              <div style="font-size:2.5rem; font-weight:900; letter-spacing:-0.03em;">3+</div>
+              <div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.1em;">YEARS OF<br>EXPERIENCE</div>
+            </div>
+            <div class="reveal reveal-d2">
+              <div style="font-size:2.5rem; font-weight:900; letter-spacing:-0.03em;">300+</div>
+              <div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.1em;">GOV AGENCIES<br>SERVED</div>
+            </div>
+            <div class="reveal reveal-d3">
+              <div style="font-size:2.5rem; font-weight:900; letter-spacing:-0.03em;">4.0</div>
+              <div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.1em;">GPA<br>AT UIUC</div>
+            </div>
+          </div>
+          <div class="skill-cards-grid">
+            <a class="skill-card skill-card--orange reveal reveal-d4" href="#experience">
+              <div class="skill-card__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+              </div>
+              <div class="skill-card__title">FULL STACK<br>DEVELOPMENT</div>
+              <div class="skill-card__arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </div>
+            </a>
+            <a class="skill-card skill-card--lime reveal reveal-d5" href="#research">
+              <div class="skill-card__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              </div>
+              <div class="skill-card__title">AI / ML<br>RESEARCH</div>
+              <div class="skill-card__arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════
+             PROJECTS
+        ══════════════════════════════════ -->
+        <section class="content-section" id="projects">
+          <h2 class="section-title reveal">RECENT<br><span>PROJECTS</span></h2>
+          <div style="margin-top:36px;">
+
+            <a class="list-item reveal reveal-d1" href="https://github.com/Devansh63/NeuroDrone-Capston" target="_blank" rel="noopener">
+              <div style="display:flex; gap:16px; align-items:flex-start;">
+                <div class="list-item__thumb" style="background:linear-gradient(135deg,#1a1a2e,#16213e);">
+                  <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.6"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                  </div>
+                </div>
+                <div>
+                  <div class="list-item__title">NeuroDrone — Autonomous Navigation via Deep RL</div>
+                  <div class="list-item__sub">Capstone Project — Purdue University</div>
+                  <div class="list-item__meta">Benchmarked 4 recurrent RL agents (RDQN, RDDPG-PER, TD3-PER, RA2C) for GPS-denied drone obstacle avoidance using occupancy mapping · AirSim · Python · PyTorch · Unreal Engine 4</div>
+                </div>
+              </div>
+              <div class="list-item__arrow">↗</div>
+            </a>
+
+            <a class="list-item reveal reveal-d2" href="https://github.com/Devansh63/devansh-rag" target="_blank" rel="noopener">
+              <div style="display:flex; gap:16px; align-items:flex-start;">
+                <div class="list-item__thumb" style="background:linear-gradient(135deg,#0f2027,#203a43);">
+                  <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.6"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="15" x2="8" y2="17"/><line x1="12" y1="15" x2="12" y2="17"/><line x1="16" y1="15" x2="16" y2="17"/></svg>
+                  </div>
+                </div>
+                <div>
+                  <div class="list-item__title">Ask Devansh — Personal RAG Chatbot</div>
+                  <div class="list-item__sub">Personal Project — Powers the assistant on this site</div>
+                  <div class="list-item__meta">RAG pipeline trained on my professional background · Google Gemini 1.5 Flash · ChromaDB · Flask · Python</div>
+                </div>
+              </div>
+              <div class="list-item__arrow">↗</div>
+            </a>
+
+            <a class="list-item reveal reveal-d3" href="https://github.com/Devansh63/CNN-from-scratch" target="_blank" rel="noopener">
+              <div style="display:flex; gap:16px; align-items:flex-start;">
+                <div class="list-item__thumb" style="background:linear-gradient(135deg,#0f1a2e,#162040);">
+                  <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.6"><rect x="2" y="2" width="9" height="9" rx="1"/><rect x="13" y="2" width="9" height="9" rx="1"/><rect x="2" y="13" width="9" height="9" rx="1"/><rect x="13" y="13" width="9" height="9" rx="1"/></svg>
+                  </div>
+                </div>
+                <div>
+                  <div class="list-item__title">CNN from Scratch</div>
+                  <div class="list-item__sub">Personal Project</div>
+                  <div class="list-item__meta">Convolutional neural network built using only NumPy — no ML frameworks. Forward/backward pass, conv layers, pooling, softmax, and gradient descent implemented by hand.</div>
+                </div>
+              </div>
+              <div class="list-item__arrow">↗</div>
+            </a>
+
+            <a class="list-item reveal reveal-d4" href="https://github.com/Devansh63/suttonRL" target="_blank" rel="noopener">
+              <div style="display:flex; gap:16px; align-items:flex-start;">
+                <div class="list-item__thumb" style="background:linear-gradient(135deg,#1a2e1a,#2d5a27);">
+                  <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+                  </div>
+                </div>
+                <div>
+                  <div class="list-item__title">Sutton &amp; Barto RL — From Scratch</div>
+                  <div class="list-item__sub">Personal Project</div>
+                  <div class="list-item__meta">Core RL algorithms from Sutton &amp; Barto implemented from scratch in Python — value iteration, policy gradient, Q-learning, and actor-critic methods.</div>
+                </div>
+              </div>
+              <div class="list-item__arrow">↗</div>
+            </a>
+
+            <a class="list-item reveal reveal-d5" href="https://github.com/Devansh63/library-rag-ingest" target="_blank" rel="noopener">
+              <div style="display:flex; gap:16px; align-items:flex-start;">
+                <div class="list-item__thumb" style="background:linear-gradient(135deg,#2e1a0e,#5a3a1a);">
+                  <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.6"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                  </div>
+                </div>
+                <div>
+                  <div class="list-item__title">Library RAG Ingest Pipeline</div>
+                  <div class="list-item__sub">Personal Project</div>
+                  <div class="list-item__meta">Data ingestion pipeline for a book recommendation RAG system. Ingests Goodreads, CMU, and UCSD datasets into Neon Postgres with pgvector · Python · PostgreSQL · pgvector</div>
+                </div>
+              </div>
+              <div class="list-item__arrow">↗</div>
+            </a>
+
+            <!-- Other Projects — collapsible -->
+            <div style="margin-top:32px;">
+              <button id="other-projects-toggle"
+                style="background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:0;color:var(--text-muted);font-family:inherit;font-size:0.8rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;"
+                aria-expanded="false" aria-controls="other-projects-list">
+                <svg id="other-projects-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="transition:transform 0.25s ease;flex-shrink:0;">
+                  <polyline points="9 18 15 12 9 6"/>
+                </svg>
+                Other Projects
+              </button>
+
+              <div id="other-projects-list" style="display:none;margin-top:16px;">
+
+                <a class="list-item" href="https://github.com/Devansh63" target="_blank" rel="noopener" style="margin-bottom:0;">
+                  <div style="display:flex; gap:16px; align-items:flex-start;">
+                    <div class="list-item__thumb" style="background:linear-gradient(135deg,#1b2838,#2a475e);">
+                      <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.6"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="16" y="2" width="6" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/><rect x="16" y="9" width="6" height="5" rx="1"/><rect x="2" y="16" width="5" height="6" rx="1"/><rect x="9" y="16" width="5" height="6" rx="1"/><rect x="16" y="16" width="6" height="6" rx="1"/></svg>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="list-item__title">Chess AI</div>
+                      <div class="list-item__sub">Personal Project</div>
+                      <div class="list-item__meta">Chess engine with minimax + alpha-beta pruning and a playable web UI · Python · JavaScript</div>
+                    </div>
+                  </div>
+                  <div class="list-item__arrow">↗</div>
+                </a>
+
+                <a class="list-item" href="https://github.com/Devansh63" target="_blank" rel="noopener">
+                  <div style="display:flex; gap:16px; align-items:flex-start;">
+                    <div class="list-item__thumb" style="background:linear-gradient(135deg,#1a2e1a,#2d5a27);">
+                      <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.6"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="list-item__title">Recipe Social Platform</div>
+                      <div class="list-item__sub">Personal Project</div>
+                      <div class="list-item__meta">Community recipe-sharing app with ratings, comments, and search · React · Node.js · MongoDB</div>
+                    </div>
+                  </div>
+                  <div class="list-item__arrow">↗</div>
+                </a>
+
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════
+             EDUCATION
+        ══════════════════════════════════ -->
+        <section class="content-section" id="education">
+          <h2 class="section-title reveal">EDUCATION<br><span>BACKGROUND</span></h2>
+          <div style="margin-top:36px;">
+
+            <div class="exp-item reveal reveal-d1">
+              <div style="display:flex;gap:14px;align-items:flex-start;">
+                <img src="https://logo.clearbit.com/illinois.edu" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" onerror="this.style.display='none'">
+                <div>
+                  <div class="exp-item__company">University of Illinois Urbana-Champaign</div>
+                  <div class="exp-item__role">Master of Computer Science — ML Systems Specialization · GPA 4.0</div>
+                  <div class="exp-item__desc">Coursework: Machine Learning, Distributed Systems, Information Retrieval, Cybersecurity, System Design. Expected graduation Jun 2027.</div>
+                </div>
+              </div>
+              <div><div class="exp-item__date">Jan 2026 – Present</div></div>
+            </div>
+
+            <div class="exp-item reveal reveal-d2">
+              <div style="display:flex;gap:14px;align-items:flex-start;">
+                <img src="https://logo.clearbit.com/purdue.edu" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" onerror="this.style.display='none'">
+                <div>
+                  <div class="exp-item__company">Purdue University Fort Wayne</div>
+                  <div class="exp-item__role">BS Computer Science, Minor Mathematics · GPA 3.80</div>
+                  <div class="exp-item__desc">Honors Gold Medal for Academic Excellence. Dean's List Fall 2018 – Spring 2020. President of the Indian Student Association (2020). New Student Orientation Leader, Fall 2019.</div>
+                </div>
+              </div>
+              <div><div class="exp-item__date">Sep 2018 – May 2022</div></div>
+            </div>
+
+            <div class="exp-item reveal reveal-d3">
+              <div style="display:flex;gap:14px;align-items:flex-start;">
+                <div style="width:36px;height:36px;border-radius:8px;background:#1565c0;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:800;color:#fff;flex-shrink:0;margin-top:2px;letter-spacing:0.02em;">DPS</div>
+                <div>
+                  <div class="exp-item__company">Delhi Public School – R.K. Puram</div>
+                  <div class="exp-item__role">High School Diploma, Computer Science</div>
+                  <div class="exp-item__desc">Graduated with distinction. Served as a certified scribe for differently-abled students during CBSE Board Examinations.</div>
+                </div>
+              </div>
+              <div><div class="exp-item__date">Jun 2016 – May 2018</div></div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════
+             WORK EXPERIENCE
+        ══════════════════════════════════ -->
+        <section class="content-section" id="experience">
+          <h2 class="section-title reveal">WORK<br><span>EXPERIENCE</span></h2>
+          <div style="margin-top:36px;">
+
+            <div class="exp-item reveal reveal-d1">
+              <div style="display:flex;gap:14px;align-items:flex-start;">
+                <img src="https://logo.clearbit.com/opexus.com" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" onerror="this.style.display='none'">
+                <div>
+                  <div class="exp-item__company">OPEXUS (Formerly AINS LLC)</div>
+                  <div class="exp-item__role">Full-Stack Software Engineer — Washington, D.C.</div>
+                  <div class="exp-item__desc">
+                    Built FOIAXpress (.NET 8) — used by 300 government agencies to process 3.4 million FOIA requests annually.
+                    Deployed a multi-stage ML pipeline using CoreNLP and AWS Comprehend to auto-redact sensitive data from government documents, cutting manual review from 10 hours to 30 minutes on average.
+                    Fine-tuned DistilBERT and DeBERTa-v3 (HuggingFace Transformers) on 8,000+ annotated documents, achieving 80%+ higher redaction accuracy on contextually ambiguous cases over CoreNLP alone.
+                    Led a team of 8 to ship bilingual French/Spanish support, acquiring 45 new Canadian customers and growing product revenue by 15%.
+                    Migrated the monolithic architecture to microservices using Docker, reducing deployment time by 70% and enabling independent scaling of the AI redaction service.
+                    Resolved 1,500+ security vulnerabilities via a CI/CD pipeline using Fortify and Qualys.
+                    Integrated Relativity, TDMS, Pay.gov, and NS Pay APIs with MFA, SAML, and reCAPTCHA — retaining 3 clients and securing 2 new contracts.
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="exp-item__date">Jul 2022 – Nov 2025</div>
+                <a href="https://www.linkedin.com/in/devansh-agrawal63/" target="_blank" rel="noopener" class="exp-item__arrow" style="display:block;text-align:right;margin-top:6px;text-decoration:none;">↗</a>
+              </div>
+            </div>
+
+            <div class="exp-item reveal reveal-d2">
+              <div style="display:flex;gap:14px;align-items:flex-start;">
+                <img src="https://logo.clearbit.com/purdue.edu" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" onerror="this.style.display='none'">
+                <div>
+                  <div class="exp-item__company">Purdue University Fort Wayne</div>
+                  <div class="exp-item__role">Applications Developer</div>
+                  <div class="exp-item__desc">Developed and maintained internal university web applications (student services, academic systems) using React, Grails, Spring, Java, and JavaScript. Automated recurring database tasks with Oracle SQL stored procedures, cutting DBA workload by 15%. Reduced annual support tickets by 15% through targeted UI enhancements and clearer in-app guidance.</div>
+                </div>
+              </div>
+              <div><div class="exp-item__date">May 2021 – May 2022</div></div>
+            </div>
+
+            <div class="exp-item reveal reveal-d3">
+              <div style="display:flex;gap:14px;align-items:flex-start;">
+                <img src="https://logo.clearbit.com/purdue.edu" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" onerror="this.style.display='none'">
+                <div>
+                  <div class="exp-item__company">Purdue University Fort Wayne</div>
+                  <div class="exp-item__role">Senior IT Support Analyst</div>
+                  <div class="exp-item__desc">Led and managed 11 IT technicians, resolving 200+ daily support requests with technical accuracy and thorough documentation. Collaborated with cross-functional IT teams to resolve escalated issues swiftly, trained junior technicians, and deployed tooling that improved team efficiency.</div>
+                </div>
+              </div>
+              <div><div class="exp-item__date">Aug 2018 – Apr 2021</div></div>
+            </div>
+
+            <div class="exp-item reveal reveal-d4">
+              <div style="display:flex;gap:14px;align-items:flex-start;">
+                <img src="https://logo.clearbit.com/khalti.com" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" onerror="this.style.display='none'">
+                <div>
+                  <div class="exp-item__company">Janaki Technology — Khalti</div>
+                  <div class="exp-item__role">Software Developer Intern — Kathmandu, Nepal</div>
+                  <div class="exp-item__desc">Contributed to Khalti, Nepal's first digital payment platform. Built and integrated mobile REST APIs, managed user database schemas, resolved UI defects, and participated in code reviews. Stack: React, Node.js, MySQL.</div>
+                </div>
+              </div>
+              <div><div class="exp-item__date">May 2019 – Aug 2019</div></div>
+            </div>
+
+            <div class="exp-item reveal reveal-d5">
+              <div style="display:flex;gap:14px;align-items:flex-start;">
+                <div style="width:36px;height:36px;border-radius:8px;background:#2e7d32;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:800;color:#fff;flex-shrink:0;margin-top:2px;letter-spacing:0.02em;">SS</div>
+                <div>
+                  <div class="exp-item__company">Smart Solutions</div>
+                  <div class="exp-item__role">Software Developer Intern — Kathmandu, Nepal</div>
+                  <div class="exp-item__desc">Developed automated Selenium test workflows covering 35% of the Bank of Zambia's internal reporting web application, improving reliability and reducing manual retesting effort. Engineered MySQL triggers to log administrative actions and report submissions, enhancing auditability and compliance.</div>
+                </div>
+              </div>
+              <div><div class="exp-item__date">Jun 2019 – Aug 2019</div></div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════
+             RESEARCH
+        ══════════════════════════════════ -->
+        <section class="content-section" id="research">
+          <h2 class="section-title reveal">RESEARCH<br><span>WORK</span></h2>
+          <div style="margin-top:36px;">
+
+            <div class="exp-item reveal reveal-d1">
+              <div>
+                <div class="exp-item__company">ML for Liver CT Imaging</div>
+                <div class="exp-item__role">Research Assistant — Purdue University</div>
+                <div class="exp-item__desc">Trained a U-Net model on 3D CT scan data to synthesise multi-angle projections, enabling a 25–50% reduction in patient radiation dose. Built 3D volume datasets from hundreds of 2D CT scans across multiple patients.</div>
+              </div>
+              <div><div class="exp-item__date">Aug – Dec 2021</div></div>
+            </div>
+
+            <div class="exp-item reveal reveal-d2">
+              <div>
+                <div class="exp-item__company">Deep Steganography</div>
+                <div class="exp-item__role">Research Assistant — Purdue University</div>
+                <div class="exp-item__desc">Researched neural approaches to data hiding within digital images. Evaluated encoding methods and implemented a pipeline that distributes compressed representations across available bit-planes — maximizing payload capacity while keeping visual artefacts imperceptible to the human eye.</div>
+              </div>
+              <div><div class="exp-item__date">Dec 2021 – May 2022</div></div>
+            </div>
+
+            <div class="exp-item reveal reveal-d3">
+              <div>
+                <div class="exp-item__company">Differential Gene Expression Analysis</div>
+                <div class="exp-item__role">Research Assistant — Purdue University</div>
+                <div class="exp-item__desc">Built parallel MATLAB pipelines to process millions of RNA records: RNA-to-DNA conversion, genome mapping against healthy rat genome records, data normalisation, and structured matrix creation for downstream statistical analysis.</div>
+              </div>
+              <div><div class="exp-item__date">Jan – May 2022</div></div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════
+             SKILLS
+        ══════════════════════════════════ -->
+        <section class="content-section" id="skills">
+          <h2 class="section-title reveal">TECHNICAL<br><span>SKILLS</span></h2>
+          <div style="margin-top:36px;">
+
+            <div class="skill-group reveal reveal-d1">
+              <div class="skill-group__label">Languages</div>
+              <div class="skill-tags">
+                <span class="skill-tag">C#</span><span class="skill-tag">Python</span><span class="skill-tag">Java</span>
+                <span class="skill-tag">JavaScript</span><span class="skill-tag">SQL</span><span class="skill-tag">C / C++</span>
+                <span class="skill-tag">HTML / CSS</span><span class="skill-tag">MATLAB</span>
+              </div>
+            </div>
+
+            <div class="skill-group reveal reveal-d2">
+              <div class="skill-group__label">Frameworks &amp; Libraries</div>
+              <div class="skill-tags">
+                <span class="skill-tag">.NET Core / Framework</span><span class="skill-tag">React</span>
+                <span class="skill-tag">Spring</span><span class="skill-tag">Grails</span>
+                <span class="skill-tag">Node.js</span><span class="skill-tag">Express.js</span>
+                <span class="skill-tag">AngularJS</span>
+              </div>
+            </div>
+
+            <div class="skill-group reveal reveal-d3">
+              <div class="skill-group__label">Machine Learning &amp; AI</div>
+              <div class="skill-tags">
+                <span class="skill-tag">PyTorch</span><span class="skill-tag">HuggingFace Transformers</span>
+                <span class="skill-tag">ONNX</span><span class="skill-tag">TensorFlow / Keras</span>
+                <span class="skill-tag">Scikit-learn</span><span class="skill-tag">Pandas</span>
+                <span class="skill-tag">NumPy</span><span class="skill-tag">OpenCV</span>
+                <span class="skill-tag">U-Net</span><span class="skill-tag">AWS Comprehend</span>
+                <span class="skill-tag">Stanford CoreNLP</span><span class="skill-tag">NER / Regex</span>
+                <span class="skill-tag">RAG Pipelines</span><span class="skill-tag">ChromaDB</span>
+                <span class="skill-tag">Vector Databases</span><span class="skill-tag">Google Gemini</span>
+              </div>
+            </div>
+
+            <div class="skill-group reveal reveal-d4">
+              <div class="skill-group__label">DevOps &amp; Cloud</div>
+              <div class="skill-tags">
+                <span class="skill-tag">Docker</span><span class="skill-tag">CI/CD</span>
+                <span class="skill-tag">Git / GitHub / GitLab</span>
+                <span class="skill-tag">Azure DevOps</span><span class="skill-tag">Microsoft Azure</span>
+              </div>
+            </div>
+
+            <div class="skill-group reveal reveal-d6">
+              <div class="skill-group__label">Security</div>
+              <div class="skill-tags">
+                <span class="skill-tag">Fortify</span><span class="skill-tag">Qualys</span>
+                <span class="skill-tag">Burp Suite</span><span class="skill-tag">MFA / TOTP</span>
+                <span class="skill-tag">SAML</span><span class="skill-tag">reCAPTCHA</span>
+              </div>
+            </div>
+
+            <div class="skill-group reveal reveal-d7">
+              <div class="skill-group__label">Testing &amp; Databases</div>
+              <div class="skill-tags">
+                <span class="skill-tag">Selenium</span><span class="skill-tag">MS SQL Server</span>
+                <span class="skill-tag">Oracle SQL</span><span class="skill-tag">MySQL</span>
+                <span class="skill-tag">PostgreSQL / pgvector</span>
+              </div>
+            </div>
+
+            <!-- Contact -->
+            <div style="margin-top:48px;" class="reveal" id="contact">
+              <h2 class="section-title" style="font-size:2.5rem;">LET'S WORK<br><span>TOGETHER</span></h2>
+              <p style="color:var(--text-muted);font-size:0.85rem;margin:12px 0 24px;">
+                Open to ML/AI internships, research roles, and full-stack opportunities.
+              </p>
+              <div class="contact-form">
+                <!-- Netlify Forms: method POST + netlify attribute = automatic form handling on deploy -->
+                <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+                  <input type="hidden" name="form-name" value="contact" />
+                  <p hidden><input name="bot-field" /></p>
+                  <div class="form-row">
+                    <div class="form-field">
+                      <label for="f-name">Name</label>
+                      <input id="f-name" name="name" type="text" placeholder="Your Name" required />
+                    </div>
+                    <div class="form-field">
+                      <label for="f-email">Email</label>
+                      <input id="f-email" name="email" type="email" placeholder="your@email.com" required />
+                    </div>
+                  </div>
+                  <div class="form-field" style="margin-bottom:16px;">
+                    <label for="f-subject">Subject</label>
+                    <select id="f-subject" name="subject">
+                      <option value="">Select a topic...</option>
+                      <option>ML/AI Internship Opportunity</option>
+                      <option>Research Collaboration</option>
+                      <option>Full-Stack / SWE Role</option>
+                      <option>General Inquiry</option>
+                    </select>
+                  </div>
+                  <div class="form-field">
+                    <label for="f-message">Message</label>
+                    <textarea id="f-message" name="message" placeholder="Tell me about the opportunity..." required></textarea>
+                  </div>
+                  <button class="form-submit" id="contact-submit" type="submit">Send Message</button>
+                </form>
+                <!-- Success state, shown after submit -->
+                <div id="contact-success" style="display:none; text-align:center; padding:32px 0;">
+                  <div style="font-size:2rem; margin-bottom:12px;">✓</div>
+                  <div style="font-size:1rem; font-weight:700; color:var(--text-primary); margin-bottom:8px;">Message sent!</div>
+                  <div style="font-size:0.85rem; color:var(--text-muted);">I'll get back to you at your email shortly.</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </div><!-- /.page-content -->
+    </div><!-- /.page-layout -->
+  </main>
+
+  <!-- ── RAG backend URL ─────────────────────────────────────────────────────
+       After deploying ask-devansh to Render, replace the URL below with your
+       live backend URL, e.g. https://ask-devansh.onrender.com
+       Leave as localhost for local development.
+  ──────────────────────────────────────────────────────────────────────── -->
+  <script>window.RAG_API_URL = 'http://localhost:5001';</script>
+
+  <!-- ── Scripts ── -->
+  <script src="assets/js/chatbot.js"></script>
+  <script src="assets/js/hero.js?v=8"></script>
+  <script>
+  (function () {
+    // ── Scroll-reveal via IntersectionObserver ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.18 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── Nav: smooth scroll + active state ──
+    const navItems = document.querySelectorAll('.nav-item[data-section]');
+    const sectionIds = ['chatbot', 'projects', 'education', 'experience', 'research', 'skills'];
+
+    navItems.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.section;
+        if (id === 'home') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+        const el = document.getElementById(id);
+        if (!el) return;
+        const top = el.getBoundingClientRect().top + window.scrollY - 96;
+        window.scrollTo({ top, behavior: 'smooth' });
+      });
+    });
+
+    // Active nav highlight based on scroll position
+    const sectionEls = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+    function updateNav() {
+      const scrollMid = window.scrollY + window.innerHeight * 0.4;
+      // Index 0 = home button, 1 = chatbot, 2 = projects, etc.
+      let active = 0;
+      sectionEls.forEach((el, i) => {
+        if (el.getBoundingClientRect().top + window.scrollY <= scrollMid) active = i + 1;
+      });
+      navItems.forEach((btn, i) => btn.classList.toggle('active', i === active));
+    }
+
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+
+    // ── Contact form: Netlify AJAX submit ──
+    const contactForm = document.getElementById('contact-form');
+    const contactSuccess = document.getElementById('contact-success');
+    const contactSubmit = document.getElementById('contact-submit');
+
+    contactForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!contactForm.checkValidity()) { contactForm.reportValidity(); return; }
+
+      contactSubmit.disabled = true;
+      contactSubmit.textContent = 'Sending...';
+
+      try {
+        const formData = new FormData(contactForm);
+        const res = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData).toString(),
+        });
+
+        if (res.ok) {
+          contactForm.style.display = 'none';
+          if (contactSuccess) contactSuccess.style.display = 'block';
+        } else {
+          // Netlify not active (local dev) — fall back to mailto
+          const name  = formData.get('name')    || '';
+          const email = formData.get('email')   || '';
+          const msg   = formData.get('message') || '';
+          window.location.href =
+            `mailto:devanshagrawal63@gmail.com?subject=Portfolio%20Contact%20from%20${encodeURIComponent(name)}&body=${encodeURIComponent(msg)}%0A%0AReply-to%3A%20${encodeURIComponent(email)}`;
+        }
+      } catch {
+        contactSubmit.disabled = false;
+        contactSubmit.textContent = 'Send Message';
+      }
+    });
+
+    // ── Other Projects toggle ──
+    const otherToggle  = document.getElementById('other-projects-toggle');
+    const otherList    = document.getElementById('other-projects-list');
+    const otherChevron = document.getElementById('other-projects-chevron');
+
+    otherToggle?.addEventListener('click', () => {
+      const isOpen = otherList.style.display !== 'none';
+      otherList.style.display   = isOpen ? 'none' : 'block';
+      otherChevron.style.transform = isOpen ? '' : 'rotate(90deg)';
+      otherToggle.setAttribute('aria-expanded', String(!isOpen));
+    });
+
+    // ── Keyboard shortcut: press / to focus chatbot input ──
+    document.addEventListener('keydown', (e) => {
+      // Skip if user is already typing in an input or textarea
+      const tag = document.activeElement?.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || document.activeElement?.isContentEditable) return;
+      if (e.key !== '/') return;
+
+      e.preventDefault();
+
+      const chatInput = document.getElementById('chat-input');
+      if (!chatInput) return;
+
+      // Scroll chatbot section into view, then focus
+      const chatSection = document.getElementById('chatbot');
+      if (chatSection) {
+        const top = chatSection.getBoundingClientRect().top + window.scrollY - 96;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+
+      // Small delay so scroll doesn't fight focus
+      setTimeout(() => chatInput.focus(), 150);
+    });
+
+  })();
+  </script>
+</body>
+</html>

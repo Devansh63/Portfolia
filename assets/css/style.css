@@ -13,7 +13,7 @@
      Dark charcoal: #161616
   ── */
   --text-primary:  #ffffff;
-  --text-muted:    #888888;
+  --text-muted:    #9a9a9a;
   --text-dark:     #1a1a1a;
   --accent-orange: #e85d34;
   --accent-lime:   #c8f02f;
@@ -61,7 +61,7 @@ body {
 }
 .section-title span {
   display: block;
-  color: rgba(255,255,255,0.15);
+  color: var(--text-primary);
   font-size: 0.9em;
 }
 
@@ -364,7 +364,6 @@ ul.exp-item__desc li::before {
   font-size: 0.95rem;
   line-height: 1.6;
   color: var(--text-primary);
-  font-style: italic;
   margin: 0;
   /* override blockquote default indent */
   padding-left: 0;
@@ -383,6 +382,48 @@ ul.exp-item__desc li::before {
   font-size: 0.8rem;
   color: var(--text-muted);
   margin-top: 2px;
+}
+.rec-card__meta {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+  opacity: 0.75;
+}
+
+/* CTA variant — used when there's no second testimonial yet */
+.rec-card--cta {
+  text-decoration: none;
+  color: inherit;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 12px;
+  transition: border-color var(--transition), background var(--transition), transform var(--transition);
+}
+.rec-card--cta:hover {
+  border-color: rgba(232,93,52,0.4);
+  background: rgba(255,255,255,0.04);
+  transform: translateY(-2px);
+}
+.rec-card__cta-icon {
+  width: 32px;
+  height: 32px;
+  color: var(--accent-orange);
+}
+.rec-card__cta-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.rec-card__cta-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+.rec-card__cta-link {
+  margin-top: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-orange);
 }
 
 /* ---- GitHub contributions chart ---- */

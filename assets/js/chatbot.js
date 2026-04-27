@@ -19,29 +19,12 @@ const RAG_API_URL = window.RAG_API_URL || 'http://localhost:5000';
 
   if (!messagesEl || !inputEl || !sendBtn) return;
 
-  // ── Health check on load — show offline state if backend is unreachable ──
-  (async function checkHealth() {
-    try {
-      const res = await fetch(`${RAG_API_URL}/health`, {
-        signal: AbortSignal.timeout(3000),
-      });
-      if (!res.ok) throw new Error('unhealthy');
-      // Backend is live — nothing extra to do, static chips are fine
-    } catch {
-      // Mark the panel as offline so users aren't confused
-      const headerSub = document.querySelector('.chatbot-panel__header p');
-      if (headerSub) {
-        headerSub.textContent = 'Backend deploying — live responses coming soon';
-        headerSub.style.color = 'var(--accent-orange)';
-      }
-      const firstMsg = messagesEl.querySelector('.chat-msg--bot');
-      if (firstMsg) {
-        firstMsg.textContent =
-          "I'm currently offline while the backend finishes deploying to Render. " +
-          "In the meantime, feel free to explore my projects and experience below!";
-      }
-    }
-  })();
+  // ── Wake-up ping on load — Render free tier sleeps after 15min of inactivity.
+  // Fire-and-forget so the backend starts warming up while the user reads the page.
+  // 60s timeout (Render cold starts can take 30-50s). Don't show "offline" unless
+  // the *user's actual message* fails — health checks shouldn't gate the UI.
+  fetch(`${RAG_API_URL}/health`, { signal: AbortSignal.timeout(60000) })
+    .catch(() => { /* silent — let real messages handle errors */ });
 
   // ── Helpers ──────────────────────────────────────────────────────────────
 
@@ -86,13 +69,30 @@ const RAG_API_URL = window.RAG_API_URL || 'http://localhost:5000';
     setLoading(true);
     const typingEl = addTypingIndicator();
 
+    // After 4s of waiting, show a "waking up" hint so cold-start delays don't feel broken.
+    // Render free tier takes 30-50s to wake from sleep, so we want users to know to be patient.
+    let coldStartHint = null;
+    const coldStartTimer = setTimeout(() => {
+      coldStartHint = document.createElement('div');
+      coldStartHint.className = 'chat-msg chat-msg--bot';
+      coldStartHint.style.opacity = '0.7';
+      coldStartHint.style.fontSize = '0.85rem';
+      coldStartHint.textContent = 'Waking up the backend — first response can take ~30s...';
+      messagesEl.insertBefore(coldStartHint, typingEl);
+      scrollToBottom();
+    }, 4000);
+
     try {
       const res = await fetch(`${RAG_API_URL}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message }),
+        // 60s timeout to comfortably cover Render cold starts
+        signal: AbortSignal.timeout(60000),
       });
 
+      clearTimeout(coldStartTimer);
+      coldStartHint?.remove();
       typingEl.remove();
 
       if (res.status === 429) {
@@ -110,10 +110,17 @@ const RAG_API_URL = window.RAG_API_URL || 'http://localhost:5000';
       addMessage(data.response, 'bot');
 
     } catch (err) {
+      clearTimeout(coldStartTimer);
+      coldStartHint?.remove();
       typingEl.remove();
-      if (err.name === 'TypeError' || err.name === 'AbortError') {
+      if (err.name === 'TimeoutError' || err.name === 'AbortError') {
         addMessage(
-          "I'm offline right now — the backend is still deploying. Check back soon!",
+          "Took too long to respond — the backend may still be waking up. Try again in a moment.",
+          'bot'
+        );
+      } else if (err.name === 'TypeError') {
+        addMessage(
+          "Can't reach the backend right now. Try again in a moment.",
           'bot'
         );
       } else {

@@ -6,91 +6,31 @@
   <title>Devansh Agrawal — ML/AI Engineer &amp; MCS at UIUC</title>
   <meta name="description" content="Devansh Agrawal — SWE turned ML researcher. 3+ years at OPEXUS building federal software used by 300+ agencies. Now at UIUC (4.0 GPA) specializing in ML systems. Open to ML/AI internships." />
 
-  <!-- Open Graph — controls how the link looks when shared on LinkedIn, Slack, iMessage -->
+  <!-- Open Graph -->
   <meta property="og:type"        content="website" />
   <meta property="og:title"       content="Devansh Agrawal — ML/AI Engineer" />
   <meta property="og:description" content="SWE turned ML researcher. Built federal software used by 300+ agencies. Now at UIUC (4.0 GPA) specializing in ML systems. Open to ML/AI internships." />
-  <meta property="og:image"       content="https://devanshagrawal.netlify.app/assets/images/og-card.png" />
-  <meta property="og:url"         content="https://devanshagrawal.netlify.app" />
+  <meta property="og:image"       content="assets/images/profile.png" />
+  <meta property="og:url"         content="https://devanshagrawal.com" />
 
   <!-- Twitter/X card -->
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:title"       content="Devansh Agrawal — ML/AI Engineer" />
   <meta name="twitter:description" content="SWE turned ML researcher. 3+ yrs at OPEXUS, now UIUC MCS (4.0 GPA). Open to ML/AI internships." />
-  <meta name="twitter:image"       content="https://devanshagrawal.netlify.app/assets/images/og-card.png" />
+  <meta name="twitter:image"       content="assets/images/profile.png" />
 
-  <!-- JSON-LD Person schema — helps Google understand who you are for rich search results -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Devansh Agrawal",
-    "url": "https://devanshagrawal.netlify.app",
-    "image": "https://devanshagrawal.netlify.app/assets/images/profile.png",
-    "jobTitle": "ML/AI Engineer",
-    "description": "SWE turned ML researcher. Built federal software used by 300+ agencies at OPEXUS. Master of Computer Science at UIUC, specializing in ML systems.",
-    "alumniOf": [
-      {
-        "@type": "CollegeOrUniversity",
-        "name": "University of Illinois Urbana-Champaign",
-        "sameAs": "https://illinois.edu"
-      },
-      {
-        "@type": "CollegeOrUniversity",
-        "name": "Purdue University Fort Wayne",
-        "sameAs": "https://www.pfw.edu"
-      }
-    ],
-    "knowsAbout": [
-      "Machine Learning",
-      "Deep Learning",
-      "Natural Language Processing",
-      "Distributed Systems",
-      "Full-Stack Engineering",
-      "Python",
-      "PyTorch",
-      "Hugging Face Transformers"
-    ],
-    "sameAs": [
-      "https://github.com/Devansh63",
-      "https://www.linkedin.com/in/devansh-agrawal63/"
-    ],
-    "email": "mailto:devanshagrawal63@gmail.com"
-  }
-  </script>
-
-  <!-- Favicon — inline SVG so no extra file needed -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23e85d34'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='900' font-size='18' fill='white'>D</text></svg>" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
-
-  <!-- ──────────────────────────────────────────────────────────────────────
-       Google Analytics 4
-       Replace G-XXXXXXXXXX with your actual GA4 Measurement ID from
-       https://analytics.google.com (Admin > Data Streams > your stream).
-       Until you replace it, the script is a no-op (won't track anything).
-  ────────────────────────────────────────────────────────────────────── -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX', {
-      anonymize_ip: true  // privacy-respecting
-    });
-  </script>
   <style>
-    /* ── Hero overlay: fixed, fades out as user scrolls ── */
     #hero-stage {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
       z-index: 10;
       overflow: hidden;
     }
-
-    /* Dark grid background */
     #hero-bg {
       position: absolute;
       inset: 0;
@@ -101,8 +41,6 @@
       background-size: 55px 55px;
       z-index: 0;
     }
-
-    /* Flying elements overlay */
     #hero-overlay {
       position: absolute;
       inset: 0;
@@ -114,14 +52,13 @@
       z-index: 2;
       pointer-events: none;
     }
-
     #fly-headline-row {
       display: flex;
       align-items: baseline;
       gap: 0.35em;
       margin-bottom: 24px;
       padding-left: 48px;
-      padding-right: 48px; /* prevent name clipping at narrow viewports */
+      padding-right: 48px;
       width: 100%;
       max-width: 1040px;
     }
@@ -140,7 +77,6 @@
       letter-spacing: -0.03em;
       will-change: transform, opacity;
     }
-
     #fly-content-row {
       display: flex;
       align-items: center;
@@ -171,8 +107,6 @@
       max-width: 380px;
       will-change: transform, opacity;
     }
-
-    /* Animated scroll cue at the bottom of the hero */
     #scroll-hint {
       position: absolute;
       bottom: 32px;
@@ -189,15 +123,11 @@
       pointer-events: none;
       will-change: opacity;
     }
-    #scroll-hint svg {
-      animation: hint-bounce 1.6s ease-in-out infinite;
-    }
+    #scroll-hint svg { animation: hint-bounce 1.6s ease-in-out infinite; }
     @keyframes hint-bounce {
       0%, 100% { transform: translateY(0); }
       50%       { transform: translateY(6px); }
     }
-
-    /* Mobile hero: override the desktop align-items:center so photo+bio are left-aligned */
     @media (max-width: 680px) {
       #fly-content-row {
         flex-direction: column;
@@ -210,7 +140,6 @@
         width: 180px;
         max-width: 52vw;
         margin-top: 0;
-        /* Clamp height so the image's transparent overhead doesn't eat screen space */
         max-height: 200px;
         overflow: hidden;
         display: flex;
@@ -227,9 +156,6 @@
 </head>
 <body>
 
-  <!-- ══════════════════════════════════════
-       NAVIGATION
-  ══════════════════════════════════════ -->
   <nav id="main-nav" aria-label="Main navigation">
     <button class="nav-item active" data-section="home" title="Home" aria-label="Home">
       <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
@@ -254,10 +180,6 @@
     </button>
   </nav>
 
-  <!-- ══════════════════════════════════════
-       HERO OVERLAY — fades as user scrolls
-       Flying elements morph into sidebar card
-  ══════════════════════════════════════ -->
   <div id="hero-stage">
     <div id="hero-bg"></div>
     <div id="hero-overlay" aria-hidden="true">
@@ -274,8 +196,6 @@
           a Master's in CS, specializing in ML systems.
         </p>
       </div>
-
-      <!-- Scroll nudge — fades as user scrolls, hidden once hero clears -->
       <div id="scroll-hint" aria-hidden="true">
         <span>scroll</span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
@@ -286,13 +206,9 @@
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════
-       MAIN CONTENT — always rendered, card is persistent sticky sidebar
-  ══════════════════════════════════════ -->
   <main id="main-content">
     <div class="page-layout">
 
-      <!-- Persistent sticky sidebar — morph target for flying elements -->
       <aside class="profile-card" id="main-card">
         <div class="profile-card__name" id="card-name">Devansh Agrawal</div>
         <div class="profile-card__photo-wrap" id="card-photo-wrap">
@@ -322,13 +238,8 @@
         </div>
       </aside>
 
-      <!-- Scrollable content -->
       <div class="page-content">
 
-        <!-- ══════════════════════════════════
-             ASK DEVANSH — RAG Chatbot
-             (pairs with card as initial home view)
-        ══════════════════════════════════ -->
         <section class="content-section" id="chatbot">
           <div class="chatbot-panel">
             <div class="chatbot-panel__header">
@@ -359,68 +270,31 @@
           </div>
         </section>
 
-        <!-- ── Currently seeking banner ── -->
         <div style="display:flex;align-items:center;gap:10px;padding:12px 16px;background:rgba(232,93,52,0.08);border:1px solid rgba(232,93,52,0.2);border-radius:12px;margin-bottom:32px;" class="reveal">
           <span style="width:8px;height:8px;border-radius:50%;background:#22c55e;flex-shrink:0;"></span>
           <span style="font-size:0.82rem;color:var(--text-primary);font-weight:500;">Actively seeking <strong>ML/AI internships</strong> for Summer / Fall 2026 &nbsp;&middot;&nbsp; F-1 visa, CPT eligible &nbsp;&middot;&nbsp; <a href="mailto:devanshagrawal63@gmail.com" style="color:var(--accent-orange);text-decoration:none;">devanshagrawal63@gmail.com</a></span>
         </div>
 
-        <!-- ── Stats + quick-link cards ── -->
         <div class="content-section" id="home-stats">
-          <div class="section-title reveal" style="margin-bottom:32px;">
-            EXPLORE
-            <span>MY WORK</span>
-          </div>
+          <div class="section-title reveal" style="margin-bottom:32px;">EXPLORE<span>MY WORK</span></div>
           <div style="display:flex; gap:32px; margin-bottom:40px; flex-wrap:wrap;">
-            <div class="reveal reveal-d1">
-              <div style="font-size:2.5rem; font-weight:900; letter-spacing:-0.03em;">3+</div>
-              <div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.1em;">YEARS OF<br>EXPERIENCE</div>
-            </div>
-            <div class="reveal reveal-d2">
-              <div style="font-size:2.5rem; font-weight:900; letter-spacing:-0.03em;">300+</div>
-              <div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.1em;">GOV AGENCIES<br>SERVED</div>
-            </div>
-            <div class="reveal reveal-d3">
-              <div style="font-size:2.5rem; font-weight:900; letter-spacing:-0.03em;">4.0</div>
-              <div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.1em;">GPA<br>AT UIUC</div>
-            </div>
+            <div class="reveal reveal-d1"><div style="font-size:2.5rem; font-weight:900; letter-spacing:-0.03em;">3+</div><div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.1em;">YEARS OF<br>EXPERIENCE</div></div>
+            <div class="reveal reveal-d2"><div style="font-size:2.5rem; font-weight:900; letter-spacing:-0.03em;">300+</div><div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.1em;">GOV AGENCIES<br>SERVED</div></div>
+            <div class="reveal reveal-d3"><div style="font-size:2.5rem; font-weight:900; letter-spacing:-0.03em;">4.0</div><div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.1em;">GPA<br>AT UIUC</div></div>
           </div>
           <div class="skill-cards-grid">
-            <a class="skill-card skill-card--orange reveal reveal-d4" href="#experience">
-              <div class="skill-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
-              </div>
-              <div class="skill-card__title">FULL STACK<br>DEVELOPMENT</div>
-              <div class="skill-card__arrow">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </div>
-            </a>
-            <a class="skill-card skill-card--lime reveal reveal-d5" href="#research">
-              <div class="skill-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-              </div>
-              <div class="skill-card__title">AI / ML<br>RESEARCH</div>
-              <div class="skill-card__arrow">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </div>
-            </a>
+            <a class="skill-card skill-card--orange reveal reveal-d4" href="#experience"><div class="skill-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div><div class="skill-card__title">FULL STACK<br>DEVELOPMENT</div><div class="skill-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></a>
+            <a class="skill-card skill-card--lime reveal reveal-d5" href="#research"><div class="skill-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><div class="skill-card__title">AI / ML<br>RESEARCH</div><div class="skill-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></a>
           </div>
         </div>
 
-        <!-- ══════════════════════════════════
-             PROJECTS
-        ══════════════════════════════════ -->
         <section class="content-section" id="projects">
           <h2 class="section-title reveal">RECENT<br><span>PROJECTS</span></h2>
           <div style="margin-top:36px;">
 
             <a class="list-item reveal reveal-d1" href="https://github.com/Devansh63/NeuroDrone-Capston" target="_blank" rel="noopener">
               <div style="display:flex; gap:16px; align-items:flex-start;">
-                <div class="list-item__thumb" style="background:linear-gradient(135deg,#1a1a2e,#16213e);">
-                  <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.6"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-                  </div>
-                </div>
+                <div class="list-item__thumb" style="background:linear-gradient(135deg,#1a1a2e,#16213e);"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.6"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div></div>
                 <div>
                   <div class="list-item__title">NeuroDrone — Autonomous Navigation via Deep RL</div>
                   <div class="list-item__sub">Capstone Project — Purdue University</div>
@@ -432,11 +306,7 @@
 
             <a class="list-item reveal reveal-d2" href="https://github.com/Devansh63/devansh-rag" target="_blank" rel="noopener">
               <div style="display:flex; gap:16px; align-items:flex-start;">
-                <div class="list-item__thumb" style="background:linear-gradient(135deg,#0f2027,#203a43);">
-                  <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.6"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="15" x2="8" y2="17"/><line x1="12" y1="15" x2="12" y2="17"/><line x1="16" y1="15" x2="16" y2="17"/></svg>
-                  </div>
-                </div>
+                <div class="list-item__thumb" style="background:linear-gradient(135deg,#0f2027,#203a43);"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.6"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="15" x2="8" y2="17"/><line x1="12" y1="15" x2="12" y2="17"/><line x1="16" y1="15" x2="16" y2="17"/></svg></div></div>
                 <div>
                   <div class="list-item__title">Ask Devansh — Personal RAG Chatbot</div>
                   <div class="list-item__sub">Personal Project — Powers the assistant on this site</div>
@@ -448,11 +318,7 @@
 
             <a class="list-item reveal reveal-d3" href="https://github.com/Devansh63/CNN-from-scratch" target="_blank" rel="noopener">
               <div style="display:flex; gap:16px; align-items:flex-start;">
-                <div class="list-item__thumb" style="background:linear-gradient(135deg,#0f1a2e,#162040);">
-                  <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.6"><rect x="2" y="2" width="9" height="9" rx="1"/><rect x="13" y="2" width="9" height="9" rx="1"/><rect x="2" y="13" width="9" height="9" rx="1"/><rect x="13" y="13" width="9" height="9" rx="1"/></svg>
-                  </div>
-                </div>
+                <div class="list-item__thumb" style="background:linear-gradient(135deg,#0f1a2e,#162040);"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.6"><rect x="2" y="2" width="9" height="9" rx="1"/><rect x="13" y="2" width="9" height="9" rx="1"/><rect x="2" y="13" width="9" height="9" rx="1"/><rect x="13" y="13" width="9" height="9" rx="1"/></svg></div></div>
                 <div>
                   <div class="list-item__title">CNN from Scratch</div>
                   <div class="list-item__sub">Personal Project</div>
@@ -464,11 +330,7 @@
 
             <a class="list-item reveal reveal-d4" href="https://github.com/Devansh63/suttonRL" target="_blank" rel="noopener">
               <div style="display:flex; gap:16px; align-items:flex-start;">
-                <div class="list-item__thumb" style="background:linear-gradient(135deg,#1a2e1a,#2d5a27);">
-                  <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-                  </div>
-                </div>
+                <div class="list-item__thumb" style="background:linear-gradient(135deg,#1a2e1a,#2d5a27);"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div></div>
                 <div>
                   <div class="list-item__title">Sutton &amp; Barto RL — From Scratch</div>
                   <div class="list-item__sub">Personal Project</div>
@@ -480,11 +342,7 @@
 
             <a class="list-item reveal reveal-d5" href="https://github.com/Devansh63/library-rag-ingest" target="_blank" rel="noopener">
               <div style="display:flex; gap:16px; align-items:flex-start;">
-                <div class="list-item__thumb" style="background:linear-gradient(135deg,#2e1a0e,#5a3a1a);">
-                  <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.6"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-                  </div>
-                </div>
+                <div class="list-item__thumb" style="background:linear-gradient(135deg,#2e1a0e,#5a3a1a);"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.6"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div></div>
                 <div>
                   <div class="list-item__title">Library RAG Ingest Pipeline</div>
                   <div class="list-item__sub">Personal Project</div>
@@ -494,67 +352,38 @@
               <div class="list-item__arrow">↗</div>
             </a>
 
-            <!-- Other Projects — collapsible -->
             <div style="margin-top:32px;">
-              <button id="other-projects-toggle"
-                style="background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:0;color:var(--text-muted);font-family:inherit;font-size:0.8rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;"
-                aria-expanded="false" aria-controls="other-projects-list">
-                <svg id="other-projects-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="transition:transform 0.25s ease;flex-shrink:0;">
-                  <polyline points="9 18 15 12 9 6"/>
-                </svg>
+              <button id="other-projects-toggle" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:0;color:var(--text-muted);font-family:inherit;font-size:0.8rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;" aria-expanded="false" aria-controls="other-projects-list">
+                <svg id="other-projects-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="transition:transform 0.25s ease;flex-shrink:0;"><polyline points="9 18 15 12 9 6"/></svg>
                 Other Projects
               </button>
-
               <div id="other-projects-list" style="display:none;margin-top:16px;">
-
                 <a class="list-item" href="https://github.com/Devansh63" target="_blank" rel="noopener" style="margin-bottom:0;">
                   <div style="display:flex; gap:16px; align-items:flex-start;">
-                    <div class="list-item__thumb" style="background:linear-gradient(135deg,#1b2838,#2a475e);">
-                      <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.6"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="16" y="2" width="6" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/><rect x="16" y="9" width="6" height="5" rx="1"/><rect x="2" y="16" width="5" height="6" rx="1"/><rect x="9" y="16" width="5" height="6" rx="1"/><rect x="16" y="16" width="6" height="6" rx="1"/></svg>
-                      </div>
-                    </div>
-                    <div>
-                      <div class="list-item__title">Chess AI</div>
-                      <div class="list-item__sub">Personal Project</div>
-                      <div class="list-item__meta">Chess engine with minimax + alpha-beta pruning and a playable web UI · Python · JavaScript</div>
-                    </div>
+                    <div class="list-item__thumb" style="background:linear-gradient(135deg,#1b2838,#2a475e);"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.6"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="16" y="2" width="6" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/><rect x="16" y="9" width="6" height="5" rx="1"/><rect x="2" y="16" width="5" height="6" rx="1"/><rect x="9" y="16" width="5" height="6" rx="1"/><rect x="16" y="16" width="6" height="6" rx="1"/></svg></div></div>
+                    <div><div class="list-item__title">Chess AI</div><div class="list-item__sub">Personal Project</div><div class="list-item__meta">Chess engine with minimax + alpha-beta pruning and a playable web UI · Python · JavaScript</div></div>
                   </div>
                   <div class="list-item__arrow">↗</div>
                 </a>
-
                 <a class="list-item" href="https://github.com/Devansh63" target="_blank" rel="noopener">
                   <div style="display:flex; gap:16px; align-items:flex-start;">
-                    <div class="list-item__thumb" style="background:linear-gradient(135deg,#1a2e1a,#2d5a27);">
-                      <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.6"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                      </div>
-                    </div>
-                    <div>
-                      <div class="list-item__title">Recipe Social Platform</div>
-                      <div class="list-item__sub">Personal Project</div>
-                      <div class="list-item__meta">Community recipe-sharing app with ratings, comments, and search · React · Node.js · MongoDB</div>
-                    </div>
+                    <div class="list-item__thumb" style="background:linear-gradient(135deg,#1a2e1a,#2d5a27);"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.6"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div></div>
+                    <div><div class="list-item__title">Recipe Social Platform</div><div class="list-item__sub">Personal Project</div><div class="list-item__meta">Community recipe-sharing app with ratings, comments, and search · React · Node.js · MongoDB</div></div>
                   </div>
                   <div class="list-item__arrow">↗</div>
                 </a>
-
               </div>
             </div>
 
           </div>
         </section>
 
-        <!-- ══════════════════════════════════
-             EDUCATION
-        ══════════════════════════════════ -->
         <section class="content-section" id="education">
           <h2 class="section-title reveal">EDUCATION<br><span>BACKGROUND</span></h2>
           <div style="margin-top:36px;">
-
             <div class="exp-item reveal reveal-d1">
               <div style="display:flex;gap:14px;align-items:flex-start;">
-                <img src="https://logo.clearbit.com/illinois.edu" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">
+                <img src="https://logo.clearbit.com/illinois.edu" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" onerror="this.style.display='none'">
                 <div>
                   <div class="exp-item__company">University of Illinois Urbana-Champaign</div>
                   <div class="exp-item__role">Master of Computer Science — ML Systems Specialization · GPA 4.0</div>
@@ -563,10 +392,9 @@
               </div>
               <div><div class="exp-item__date">Jan 2026 – Present</div></div>
             </div>
-
             <div class="exp-item reveal reveal-d2">
               <div style="display:flex;gap:14px;align-items:flex-start;">
-                <img src="https://logo.clearbit.com/purdue.edu" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">
+                <img src="https://logo.clearbit.com/purdue.edu" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" onerror="this.style.display='none'">
                 <div>
                   <div class="exp-item__company">Purdue University Fort Wayne</div>
                   <div class="exp-item__role">BS Computer Science, Minor Mathematics · GPA 3.80</div>
@@ -575,7 +403,6 @@
               </div>
               <div><div class="exp-item__date">Sep 2018 – May 2022</div></div>
             </div>
-
             <div class="exp-item reveal reveal-d3">
               <div style="display:flex;gap:14px;align-items:flex-start;">
                 <div style="width:36px;height:36px;border-radius:8px;background:#1565c0;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:800;color:#fff;flex-shrink:0;margin-top:2px;letter-spacing:0.02em;">DPS</div>
@@ -587,335 +414,112 @@
               </div>
               <div><div class="exp-item__date">Jun 2016 – May 2018</div></div>
             </div>
-
           </div>
         </section>
 
-        <!-- ══════════════════════════════════
-             CURRENTLY LEARNING
-             What I'm actively studying / building right now.
-             Update these as you progress through coursework or new projects.
-        ══════════════════════════════════ -->
-        <section class="content-section" id="learning">
-          <h2 class="section-title reveal">CURRENTLY<br><span>LEARNING</span></h2>
-          <div class="learning-grid reveal reveal-d1">
-
-            <div class="learning-card">
-              <div class="learning-card__label">Coursework · UIUC Spring 2026</div>
-              <div class="learning-card__title">Applied Machine Learning</div>
-              <div class="learning-card__desc">Deep dives into supervised/unsupervised learning, model evaluation, and hands-on PyTorch implementations.</div>
-            </div>
-
-            <div class="learning-card">
-              <div class="learning-card__label">Coursework · UIUC Spring 2026</div>
-              <div class="learning-card__title">Distributed Systems</div>
-              <div class="learning-card__desc">Consensus protocols, consistency models, and building fault-tolerant systems at scale.</div>
-            </div>
-
-            <div class="learning-card">
-              <div class="learning-card__label">Side Project</div>
-              <div class="learning-card__title">Agentic RAG with Tool Use</div>
-              <div class="learning-card__desc">Building multi-step agents that combine retrieval, function calls, and reasoning loops over personal datasets.</div>
-            </div>
-
-            <div class="learning-card">
-              <div class="learning-card__label">Reading</div>
-              <div class="learning-card__title">"Designing Data-Intensive Applications" — Kleppmann</div>
-              <div class="learning-card__desc">Working through chapter-by-chapter notes on storage engines, replication, and stream processing.</div>
-            </div>
-
-          </div>
-        </section>
-
-        <!-- ══════════════════════════════════
-             WORK EXPERIENCE
-        ══════════════════════════════════ -->
         <section class="content-section" id="experience">
           <h2 class="section-title reveal">WORK<br><span>EXPERIENCE</span></h2>
           <div style="margin-top:36px;">
-
             <div class="exp-item reveal reveal-d1">
               <div style="display:flex;gap:14px;align-items:flex-start;">
-                <img src="https://logo.clearbit.com/opexus.com" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">
+                <img src="https://logo.clearbit.com/opexus.com" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" onerror="this.style.display='none'">
                 <div>
                   <div class="exp-item__company">OPEXUS (Formerly AINS LLC)</div>
                   <div class="exp-item__role">Full-Stack Software Engineer — Washington, D.C.</div>
-                  <ul class="exp-item__desc">
-                    <li>Built FOIAXpress (.NET 8) — used by 300 government agencies to process 3.4M FOIA requests annually.</li>
-                    <li>Deployed a multi-stage ML pipeline (CoreNLP + AWS Comprehend) to auto-redact sensitive documents, cutting manual review from 10 hours to 30 minutes.</li>
-                    <li>Fine-tuned DistilBERT and DeBERTa-v3 on 8,000+ annotated documents, achieving 80%+ higher redaction accuracy on ambiguous cases over CoreNLP alone.</li>
-                    <li>Led a team of 8 to ship bilingual French/Spanish support, acquiring 45 new Canadian customers and growing revenue by 15%.</li>
-                    <li>Migrated monolithic architecture to microservices with Docker, reducing deployment time by 70%.</li>
-                    <li>Resolved 1,500+ security vulnerabilities via CI/CD pipeline using Fortify and Qualys.</li>
-                    <li>Integrated Relativity, TDMS, Pay.gov, and NS Pay APIs with MFA, SAML, and reCAPTCHA — retaining 3 clients and securing 2 new contracts.</li>
-                  </ul>
+                  <div class="exp-item__desc">Built FOIAXpress (.NET 8) — used by 300 government agencies to process 3.4 million FOIA requests annually. Deployed a multi-stage ML pipeline using CoreNLP and AWS Comprehend to auto-redact sensitive data from government documents, cutting manual review from 10 hours to 30 minutes on average. Fine-tuned DistilBERT and DeBERTa-v3 (HuggingFace Transformers) on 8,000+ annotated documents, achieving 80%+ higher redaction accuracy on contextually ambiguous cases over CoreNLP alone. Led a team of 8 to ship bilingual French/Spanish support, acquiring 45 new Canadian customers and growing product revenue by 15%. Migrated the monolithic architecture to microservices using Docker, reducing deployment time by 70% and enabling independent scaling of the AI redaction service. Resolved 1,500+ security vulnerabilities via a CI/CD pipeline using Fortify and Qualys. Integrated Relativity, TDMS, Pay.gov, and NS Pay APIs with MFA, SAML, and reCAPTCHA — retaining 3 clients and securing 2 new contracts.</div>
                 </div>
               </div>
-              <div>
-                <div class="exp-item__date">Jul 2022 – Nov 2025</div>
-                <a href="https://www.linkedin.com/in/devansh-agrawal63/" target="_blank" rel="noopener" class="exp-item__arrow" style="display:block;text-align:right;margin-top:6px;text-decoration:none;">↗</a>
-              </div>
+              <div><div class="exp-item__date">Jul 2022 – Nov 2025</div><a href="https://www.linkedin.com/in/devansh-agrawal63/" target="_blank" rel="noopener" class="exp-item__arrow" style="display:block;text-align:right;margin-top:6px;text-decoration:none;">↗</a></div>
             </div>
-
             <div class="exp-item reveal reveal-d2">
               <div style="display:flex;gap:14px;align-items:flex-start;">
-                <img src="https://logo.clearbit.com/purdue.edu" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">
+                <img src="https://logo.clearbit.com/purdue.edu" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" onerror="this.style.display='none'">
                 <div>
                   <div class="exp-item__company">Purdue University Fort Wayne</div>
                   <div class="exp-item__role">Applications Developer</div>
-                  <ul class="exp-item__desc">
-                    <li>Developed and maintained internal university web applications (student services, academic systems) using React, Grails, Spring, Java, and JavaScript.</li>
-                    <li>Automated recurring database tasks with Oracle SQL stored procedures, cutting DBA workload by 15%.</li>
-                    <li>Reduced annual support tickets by 15% through targeted UI enhancements and clearer in-app guidance.</li>
-                  </ul>
+                  <div class="exp-item__desc">Developed and maintained internal university web applications (student services, academic systems) using React, Grails, Spring, Java, and JavaScript. Automated recurring database tasks with Oracle SQL stored procedures, cutting DBA workload by 15%. Reduced annual support tickets by 15% through targeted UI enhancements and clearer in-app guidance.</div>
                 </div>
               </div>
               <div><div class="exp-item__date">May 2021 – May 2022</div></div>
             </div>
-
             <div class="exp-item reveal reveal-d3">
               <div style="display:flex;gap:14px;align-items:flex-start;">
-                <img src="https://logo.clearbit.com/purdue.edu" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">
+                <img src="https://logo.clearbit.com/purdue.edu" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" onerror="this.style.display='none'">
                 <div>
                   <div class="exp-item__company">Purdue University Fort Wayne</div>
                   <div class="exp-item__role">Senior IT Support Analyst</div>
-                  <ul class="exp-item__desc">
-                    <li>Led and managed 11 IT technicians, resolving 200+ daily support requests with technical accuracy and thorough documentation.</li>
-                    <li>Collaborated with cross-functional IT teams to resolve escalated issues, trained junior technicians, and deployed tooling that improved team efficiency.</li>
-                  </ul>
+                  <div class="exp-item__desc">Led and managed 11 IT technicians, resolving 200+ daily support requests with technical accuracy and thorough documentation. Collaborated with cross-functional IT teams to resolve escalated issues swiftly, trained junior technicians, and deployed tooling that improved team efficiency.</div>
                 </div>
               </div>
               <div><div class="exp-item__date">Aug 2018 – Apr 2021</div></div>
             </div>
-
             <div class="exp-item reveal reveal-d4">
               <div style="display:flex;gap:14px;align-items:flex-start;">
-                <img src="https://logo.clearbit.com/khalti.com" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">
+                <img src="https://logo.clearbit.com/khalti.com" width="36" height="36" style="border-radius:8px;flex-shrink:0;margin-top:2px;object-fit:contain;background:#fff;" alt="" onerror="this.style.display='none'">
                 <div>
                   <div class="exp-item__company">Janaki Technology — Khalti</div>
                   <div class="exp-item__role">Software Developer Intern — Kathmandu, Nepal</div>
-                  <ul class="exp-item__desc">
-                    <li>Built and integrated mobile REST APIs for Khalti — Nepal's first digital payment platform.</li>
-                    <li>Managed user database schemas, resolved UI defects, and participated in code reviews. Stack: React, Node.js, MySQL.</li>
-                  </ul>
+                  <div class="exp-item__desc">Contributed to Khalti, Nepal's first digital payment platform. Built and integrated mobile REST APIs, managed user database schemas, resolved UI defects, and participated in code reviews. Stack: React, Node.js, MySQL.</div>
                 </div>
               </div>
               <div><div class="exp-item__date">May 2019 – Aug 2019</div></div>
             </div>
-
             <div class="exp-item reveal reveal-d5">
               <div style="display:flex;gap:14px;align-items:flex-start;">
                 <div style="width:36px;height:36px;border-radius:8px;background:#2e7d32;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:800;color:#fff;flex-shrink:0;margin-top:2px;letter-spacing:0.02em;">SS</div>
                 <div>
                   <div class="exp-item__company">Smart Solutions</div>
                   <div class="exp-item__role">Software Developer Intern — Kathmandu, Nepal</div>
-                  <ul class="exp-item__desc">
-                    <li>Developed automated Selenium test workflows covering 35% of the Bank of Zambia's internal reporting web app, improving reliability and reducing manual retesting.</li>
-                    <li>Engineered MySQL triggers to log administrative actions and report submissions, enhancing auditability and compliance.</li>
-                  </ul>
+                  <div class="exp-item__desc">Developed automated Selenium test workflows covering 35% of the Bank of Zambia's internal reporting web application, improving reliability and reducing manual retesting effort. Engineered MySQL triggers to log administrative actions and report submissions, enhancing auditability and compliance.</div>
                 </div>
               </div>
               <div><div class="exp-item__date">Jun 2019 – Aug 2019</div></div>
             </div>
-
           </div>
         </section>
 
-        <!-- ══════════════════════════════════
-             RECOMMENDATIONS
-             Replace placeholder text with real LinkedIn recommendations.
-             Each block: quote, attribution name, attribution title.
-        ══════════════════════════════════ -->
-        <section class="content-section" id="recommendations">
-          <h2 class="section-title reveal">RECOMMEN-<br><span>DATIONS</span></h2>
-          <div class="rec-grid" style="margin-top:36px;">
-
-            <figure class="rec-card reveal reveal-d1">
-              <svg class="rec-card__quote" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M9.583 17.321C8.553 16.227 8 15 8 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C18.553 16.227 18 15 18 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"/>
-              </svg>
-              <blockquote class="rec-card__text">
-                Devansh is a highly dependable and enthusiastic individual who consistently brings a positive and cheerful attitude to the workplace. He possesses strong problem-solving skills, effectively breaking down intricate tasks and tackling them with ease. A true team player, Devansh is always willing to assist his colleagues, fostering a collaborative and supportive environment. I highly recommend him.
-              </blockquote>
-              <figcaption class="rec-card__author">
-                <div class="rec-card__name">Rushabh Dharia</div>
-                <div class="rec-card__title">Software Engineer 2 · The Aspen Group</div>
-                <div class="rec-card__meta">Senior colleague at OPEXUS · Feb 2025</div>
-              </figcaption>
-            </figure>
-
-            <a class="rec-card rec-card--cta reveal reveal-d2" href="https://www.linkedin.com/in/devansh-agrawal63/details/recommendations/" target="_blank" rel="noopener">
-              <svg class="rec-card__cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/>
-                <rect x="2" y="9" width="4" height="12"/>
-                <circle cx="4" cy="4" r="2"/>
-              </svg>
-              <div class="rec-card__cta-title">More on LinkedIn</div>
-              <div class="rec-card__cta-desc">Read full recommendations from past colleagues, managers, and collaborators.</div>
-              <div class="rec-card__cta-link">View on LinkedIn ↗</div>
-            </a>
-
-          </div>
-        </section>
-
-        <!-- ══════════════════════════════════
-             RESEARCH
-        ══════════════════════════════════ -->
         <section class="content-section" id="research">
           <h2 class="section-title reveal">RESEARCH<br><span>WORK</span></h2>
           <div style="margin-top:36px;">
-
             <div class="exp-item reveal reveal-d1">
-              <div>
-                <div class="exp-item__company">ML for Liver CT Imaging</div>
-                <div class="exp-item__role">Research Assistant — Purdue University</div>
-                <div class="exp-item__desc">Trained a U-Net model on 3D CT scan data to synthesise multi-angle projections, enabling a 25–50% reduction in patient radiation dose. Built 3D volume datasets from hundreds of 2D CT scans across multiple patients.</div>
-              </div>
+              <div><div class="exp-item__company">ML for Liver CT Imaging</div><div class="exp-item__role">Research Assistant — Purdue University</div><div class="exp-item__desc">Trained a U-Net model on 3D CT scan data to synthesise multi-angle projections, enabling a 25–50% reduction in patient radiation dose. Built 3D volume datasets from hundreds of 2D CT scans across multiple patients.</div></div>
               <div><div class="exp-item__date">Aug – Dec 2021</div></div>
             </div>
-
             <div class="exp-item reveal reveal-d2">
-              <div>
-                <div class="exp-item__company">Deep Steganography</div>
-                <div class="exp-item__role">Research Assistant — Purdue University</div>
-                <div class="exp-item__desc">Researched neural approaches to data hiding within digital images. Evaluated encoding methods and implemented a pipeline that distributes compressed representations across available bit-planes — maximizing payload capacity while keeping visual artefacts imperceptible to the human eye.</div>
-              </div>
+              <div><div class="exp-item__company">Deep Steganography</div><div class="exp-item__role">Research Assistant — Purdue University</div><div class="exp-item__desc">Researched neural approaches to data hiding within digital images. Evaluated encoding methods and implemented a pipeline that distributes compressed representations across available bit-planes — maximizing payload capacity while keeping visual artefacts imperceptible to the human eye.</div></div>
               <div><div class="exp-item__date">Dec 2021 – May 2022</div></div>
             </div>
-
             <div class="exp-item reveal reveal-d3">
-              <div>
-                <div class="exp-item__company">Differential Gene Expression Analysis</div>
-                <div class="exp-item__role">Research Assistant — Purdue University</div>
-                <div class="exp-item__desc">Built parallel MATLAB pipelines to process millions of RNA records: RNA-to-DNA conversion, genome mapping against healthy rat genome records, data normalisation, and structured matrix creation for downstream statistical analysis.</div>
-              </div>
+              <div><div class="exp-item__company">Differential Gene Expression Analysis</div><div class="exp-item__role">Research Assistant — Purdue University</div><div class="exp-item__desc">Built parallel MATLAB pipelines to process millions of RNA records: RNA-to-DNA conversion, genome mapping against healthy rat genome records, data normalisation, and structured matrix creation for downstream statistical analysis.</div></div>
               <div><div class="exp-item__date">Jan – May 2022</div></div>
             </div>
-
           </div>
         </section>
 
-        <!-- ══════════════════════════════════
-             SKILLS
-        ══════════════════════════════════ -->
         <section class="content-section" id="skills">
           <h2 class="section-title reveal">TECHNICAL<br><span>SKILLS</span></h2>
-
-          <!-- GitHub contributions chart — pulls live data from ghchart.rshah.org -->
-          <a class="github-chart reveal reveal-d1" href="https://github.com/Devansh63" target="_blank" rel="noopener" title="View GitHub profile">
-            <div class="github-chart__header">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.305-5.467-1.332-5.467-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-              </svg>
-              <span>Recent GitHub activity</span>
-              <span class="github-chart__arrow">↗</span>
-            </div>
-            <img src="https://ghchart.rshah.org/e85d34/Devansh63"
-                 alt="Devansh Agrawal's GitHub contributions over the past year"
-                 loading="lazy" decoding="async"
-                 class="github-chart__img" />
-          </a>
-
           <div style="margin-top:36px;">
-
-            <div class="skill-group reveal reveal-d1">
-              <div class="skill-group__label">Languages</div>
-              <div class="skill-tags">
-                <span class="skill-tag">C#</span><span class="skill-tag">Python</span><span class="skill-tag">Java</span>
-                <span class="skill-tag">JavaScript</span><span class="skill-tag">SQL</span><span class="skill-tag">C / C++</span>
-                <span class="skill-tag">HTML / CSS</span><span class="skill-tag">MATLAB</span>
-              </div>
-            </div>
-
-            <div class="skill-group reveal reveal-d2">
-              <div class="skill-group__label">Frameworks &amp; Libraries</div>
-              <div class="skill-tags">
-                <span class="skill-tag">.NET Core / Framework</span><span class="skill-tag">React</span>
-                <span class="skill-tag">Spring</span><span class="skill-tag">Grails</span>
-                <span class="skill-tag">Node.js</span><span class="skill-tag">Express.js</span>
-                <span class="skill-tag">AngularJS</span>
-              </div>
-            </div>
-
-            <div class="skill-group reveal reveal-d3">
-              <div class="skill-group__label">Machine Learning &amp; AI</div>
-              <div class="skill-tags">
-                <span class="skill-tag">PyTorch</span><span class="skill-tag">HuggingFace Transformers</span>
-                <span class="skill-tag">ONNX</span><span class="skill-tag">TensorFlow / Keras</span>
-                <span class="skill-tag">Scikit-learn</span><span class="skill-tag">Pandas</span>
-                <span class="skill-tag">NumPy</span><span class="skill-tag">OpenCV</span>
-                <span class="skill-tag">U-Net</span><span class="skill-tag">AWS Comprehend</span>
-                <span class="skill-tag">Stanford CoreNLP</span><span class="skill-tag">NER / Regex</span>
-                <span class="skill-tag">RAG Pipelines</span><span class="skill-tag">ChromaDB</span>
-                <span class="skill-tag">Vector Databases</span><span class="skill-tag">Google Gemini</span>
-              </div>
-            </div>
-
-            <div class="skill-group reveal reveal-d4">
-              <div class="skill-group__label">DevOps &amp; Cloud</div>
-              <div class="skill-tags">
-                <span class="skill-tag">Docker</span><span class="skill-tag">CI/CD</span>
-                <span class="skill-tag">Git / GitHub / GitLab</span>
-                <span class="skill-tag">Azure DevOps</span><span class="skill-tag">Microsoft Azure</span>
-              </div>
-            </div>
-
-            <div class="skill-group reveal reveal-d6">
-              <div class="skill-group__label">Security</div>
-              <div class="skill-tags">
-                <span class="skill-tag">Fortify</span><span class="skill-tag">Qualys</span>
-                <span class="skill-tag">Burp Suite</span><span class="skill-tag">MFA / TOTP</span>
-                <span class="skill-tag">SAML</span><span class="skill-tag">reCAPTCHA</span>
-              </div>
-            </div>
-
-            <div class="skill-group reveal reveal-d7">
-              <div class="skill-group__label">Testing &amp; Databases</div>
-              <div class="skill-tags">
-                <span class="skill-tag">Selenium</span><span class="skill-tag">MS SQL Server</span>
-                <span class="skill-tag">Oracle SQL</span><span class="skill-tag">MySQL</span>
-                <span class="skill-tag">PostgreSQL / pgvector</span>
-              </div>
-            </div>
-
-            <!-- Contact -->
+            <div class="skill-group reveal reveal-d1"><div class="skill-group__label">Languages</div><div class="skill-tags"><span class="skill-tag">C#</span><span class="skill-tag">Python</span><span class="skill-tag">Java</span><span class="skill-tag">JavaScript</span><span class="skill-tag">SQL</span><span class="skill-tag">C / C++</span><span class="skill-tag">HTML / CSS</span><span class="skill-tag">MATLAB</span></div></div>
+            <div class="skill-group reveal reveal-d2"><div class="skill-group__label">Frameworks &amp; Libraries</div><div class="skill-tags"><span class="skill-tag">.NET Core / Framework</span><span class="skill-tag">React</span><span class="skill-tag">Spring</span><span class="skill-tag">Grails</span><span class="skill-tag">Node.js</span><span class="skill-tag">Express.js</span><span class="skill-tag">AngularJS</span></div></div>
+            <div class="skill-group reveal reveal-d3"><div class="skill-group__label">Machine Learning &amp; AI</div><div class="skill-tags"><span class="skill-tag">PyTorch</span><span class="skill-tag">HuggingFace Transformers</span><span class="skill-tag">ONNX</span><span class="skill-tag">TensorFlow / Keras</span><span class="skill-tag">Scikit-learn</span><span class="skill-tag">Pandas</span><span class="skill-tag">NumPy</span><span class="skill-tag">OpenCV</span><span class="skill-tag">U-Net</span><span class="skill-tag">AWS Comprehend</span><span class="skill-tag">Stanford CoreNLP</span><span class="skill-tag">NER / Regex</span><span class="skill-tag">RAG Pipelines</span><span class="skill-tag">ChromaDB</span><span class="skill-tag">Vector Databases</span><span class="skill-tag">Google Gemini</span></div></div>
+            <div class="skill-group reveal reveal-d4"><div class="skill-group__label">DevOps &amp; Cloud</div><div class="skill-tags"><span class="skill-tag">Docker</span><span class="skill-tag">CI/CD</span><span class="skill-tag">Git / GitHub / GitLab</span><span class="skill-tag">Azure DevOps</span><span class="skill-tag">Microsoft Azure</span></div></div>
+            <div class="skill-group reveal reveal-d6"><div class="skill-group__label">Security</div><div class="skill-tags"><span class="skill-tag">Fortify</span><span class="skill-tag">Qualys</span><span class="skill-tag">Burp Suite</span><span class="skill-tag">MFA / TOTP</span><span class="skill-tag">SAML</span><span class="skill-tag">reCAPTCHA</span></div></div>
+            <div class="skill-group reveal reveal-d7"><div class="skill-group__label">Testing &amp; Databases</div><div class="skill-tags"><span class="skill-tag">Selenium</span><span class="skill-tag">MS SQL Server</span><span class="skill-tag">Oracle SQL</span><span class="skill-tag">MySQL</span><span class="skill-tag">PostgreSQL / pgvector</span></div></div>
             <div style="margin-top:48px;" class="reveal" id="contact">
               <h2 class="section-title" style="font-size:2.5rem;">LET'S WORK<br><span>TOGETHER</span></h2>
-              <p style="color:var(--text-muted);font-size:0.85rem;margin:12px 0 24px;">
-                Open to ML/AI internships, research roles, and full-stack opportunities.
-              </p>
+              <p style="color:var(--text-muted);font-size:0.85rem;margin:12px 0 24px;">Open to ML/AI internships, research roles, and full-stack opportunities.</p>
               <div class="contact-form">
-                <!-- Netlify Forms: method POST + netlify attribute = automatic form handling on deploy -->
                 <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
                   <input type="hidden" name="form-name" value="contact" />
                   <p hidden><input name="bot-field" /></p>
                   <div class="form-row">
-                    <div class="form-field">
-                      <label for="f-name">Name</label>
-                      <input id="f-name" name="name" type="text" placeholder="Your Name" required />
-                    </div>
-                    <div class="form-field">
-                      <label for="f-email">Email</label>
-                      <input id="f-email" name="email" type="email" placeholder="your@email.com" required />
-                    </div>
+                    <div class="form-field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" placeholder="Your Name" required /></div>
+                    <div class="form-field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" placeholder="your@email.com" required /></div>
                   </div>
-                  <div class="form-field" style="margin-bottom:16px;">
-                    <label for="f-subject">Subject</label>
-                    <select id="f-subject" name="subject">
-                      <option value="">Select a topic...</option>
-                      <option>ML/AI Internship Opportunity</option>
-                      <option>Research Collaboration</option>
-                      <option>Full-Stack / SWE Role</option>
-                      <option>General Inquiry</option>
-                    </select>
-                  </div>
-                  <div class="form-field">
-                    <label for="f-message">Message</label>
-                    <textarea id="f-message" name="message" placeholder="Tell me about the opportunity..." required></textarea>
-                  </div>
+                  <div class="form-field" style="margin-bottom:16px;"><label for="f-subject">Subject</label><select id="f-subject" name="subject"><option value="">Select a topic...</option><option>ML/AI Internship Opportunity</option><option>Research Collaboration</option><option>Full-Stack / SWE Role</option><option>General Inquiry</option></select></div>
+                  <div class="form-field"><label for="f-message">Message</label><textarea id="f-message" name="message" placeholder="Tell me about the opportunity..." required></textarea></div>
                   <button class="form-submit" id="contact-submit" type="submit">Send Message</button>
                 </form>
-                <!-- Success state, shown after submit -->
                 <div id="contact-success" style="display:none; text-align:center; padding:32px 0;">
                   <div style="font-size:2rem; margin-bottom:12px;">✓</div>
                   <div style="font-size:1rem; font-weight:700; color:var(--text-primary); margin-bottom:8px;">Message sent!</div>
@@ -923,49 +527,29 @@
                 </div>
               </div>
             </div>
-
           </div>
         </section>
 
-      </div><!-- /.page-content -->
-    </div><!-- /.page-layout -->
+      </div>
+    </div>
   </main>
 
-  <!-- ── RAG backend URL ─────────────────────────────────────────────────────
-       After deploying ask-devansh to Render, replace the URL below with your
-       live backend URL, e.g. https://ask-devansh.onrender.com
-       Leave as localhost for local development.
-  ──────────────────────────────────────────────────────────────────────── -->
-  <script>window.RAG_API_URL = 'https://devansh-rag.onrender.com';</script>
-
-  <!-- ── Scripts ── -->
-  <script src="assets/js/chatbot.js?v=2"></script>
-  <script src="assets/js/hero.js?v=9"></script>
+  <script>window.RAG_API_URL = 'http://localhost:5001';</script>
+  <script src="assets/js/chatbot.js"></script>
+  <script src="assets/js/hero.js?v=8"></script>
   <script>
   (function () {
-    // ── Scroll-reveal via IntersectionObserver ──
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
     }, { threshold: 0.18 });
-
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // ── Nav: smooth scroll + active state ──
     const navItems = document.querySelectorAll('.nav-item[data-section]');
     const sectionIds = ['chatbot', 'projects', 'education', 'experience', 'research', 'skills'];
-
     navItems.forEach(btn => {
       btn.addEventListener('click', () => {
         const id = btn.dataset.section;
-        if (id === 'home') {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-          return;
-        }
+        if (id === 'home') { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
         const el = document.getElementById(id);
         if (!el) return;
         const top = el.getBoundingClientRect().top + window.scrollY - 96;
@@ -973,94 +557,53 @@
       });
     });
 
-    // Active nav highlight based on scroll position
     const sectionEls = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
-
     function updateNav() {
       const scrollMid = window.scrollY + window.innerHeight * 0.4;
-      // Index 0 = home button, 1 = chatbot, 2 = projects, etc.
       let active = 0;
-      sectionEls.forEach((el, i) => {
-        if (el.getBoundingClientRect().top + window.scrollY <= scrollMid) active = i + 1;
-      });
+      sectionEls.forEach((el, i) => { if (el.getBoundingClientRect().top + window.scrollY <= scrollMid) active = i + 1; });
       navItems.forEach((btn, i) => btn.classList.toggle('active', i === active));
     }
-
     window.addEventListener('scroll', updateNav, { passive: true });
     updateNav();
 
-    // ── Contact form: Netlify AJAX submit ──
     const contactForm = document.getElementById('contact-form');
     const contactSuccess = document.getElementById('contact-success');
     const contactSubmit = document.getElementById('contact-submit');
-
     contactForm?.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!contactForm.checkValidity()) { contactForm.reportValidity(); return; }
-
       contactSubmit.disabled = true;
       contactSubmit.textContent = 'Sending...';
-
       try {
         const formData = new FormData(contactForm);
-        const res = await fetch('/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(formData).toString(),
-        });
-
-        if (res.ok) {
-          contactForm.style.display = 'none';
-          if (contactSuccess) contactSuccess.style.display = 'block';
-        } else {
-          // Netlify not active (local dev) — fall back to mailto
-          const name  = formData.get('name')    || '';
-          const email = formData.get('email')   || '';
-          const msg   = formData.get('message') || '';
-          window.location.href =
-            `mailto:devanshagrawal63@gmail.com?subject=Portfolio%20Contact%20from%20${encodeURIComponent(name)}&body=${encodeURIComponent(msg)}%0A%0AReply-to%3A%20${encodeURIComponent(email)}`;
-        }
-      } catch {
-        contactSubmit.disabled = false;
-        contactSubmit.textContent = 'Send Message';
-      }
+        const res = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(formData).toString() });
+        if (res.ok) { contactForm.style.display = 'none'; if (contactSuccess) contactSuccess.style.display = 'block'; }
+        else { const name = formData.get('name') || ''; const email = formData.get('email') || ''; const msg = formData.get('message') || ''; window.location.href = `mailto:devanshagrawal63@gmail.com?subject=Portfolio%20Contact%20from%20${encodeURIComponent(name)}&body=${encodeURIComponent(msg)}%0A%0AReply-to%3A%20${encodeURIComponent(email)}`; }
+      } catch { contactSubmit.disabled = false; contactSubmit.textContent = 'Send Message'; }
     });
 
-    // ── Other Projects toggle ──
-    const otherToggle  = document.getElementById('other-projects-toggle');
-    const otherList    = document.getElementById('other-projects-list');
+    const otherToggle = document.getElementById('other-projects-toggle');
+    const otherList = document.getElementById('other-projects-list');
     const otherChevron = document.getElementById('other-projects-chevron');
-
     otherToggle?.addEventListener('click', () => {
       const isOpen = otherList.style.display !== 'none';
-      otherList.style.display   = isOpen ? 'none' : 'block';
+      otherList.style.display = isOpen ? 'none' : 'block';
       otherChevron.style.transform = isOpen ? '' : 'rotate(90deg)';
       otherToggle.setAttribute('aria-expanded', String(!isOpen));
     });
 
-    // ── Keyboard shortcut: press / to focus chatbot input ──
     document.addEventListener('keydown', (e) => {
-      // Skip if user is already typing in an input or textarea
       const tag = document.activeElement?.tagName;
       if (tag === 'INPUT' || tag === 'TEXTAREA' || document.activeElement?.isContentEditable) return;
       if (e.key !== '/') return;
-
       e.preventDefault();
-
       const chatInput = document.getElementById('chat-input');
       if (!chatInput) return;
-
-      // Scroll chatbot section into view, then focus
       const chatSection = document.getElementById('chatbot');
-      if (chatSection) {
-        const top = chatSection.getBoundingClientRect().top + window.scrollY - 96;
-        window.scrollTo({ top, behavior: 'smooth' });
-      }
-
-      // Small delay so scroll doesn't fight focus
+      if (chatSection) { const top = chatSection.getBoundingClientRect().top + window.scrollY - 96; window.scrollTo({ top, behavior: 'smooth' }); }
       setTimeout(() => chatInput.focus(), 150);
     });
-
   })();
   </script>
 </body>
